@@ -25,7 +25,7 @@ public class Prime2
                     b = true;
                 }
             }
-            if (b = true)
+            if (b)
             {
                 System.out.printf(i + " ");
             }

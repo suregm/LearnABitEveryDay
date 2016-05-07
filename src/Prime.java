@@ -23,7 +23,7 @@ public class Prime
                     b = true;
                 }
             }
-            if (b = true)
+            if (b)
             {
                 System.out.printf(i + " ");
             }
