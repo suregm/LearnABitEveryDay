@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Created by sure GM on 2016/5/9.
  */
@@ -40,5 +42,18 @@ public class PolynomialAddition {
     public static void main(String[] args)
     {
 
+    }
+
+    public static int input(int leftPoint, int rightPoint) {
+        int n;
+        System.out.println("pls input a number:");
+        Scanner s = new Scanner(System.in);
+        int input = s.nextInt();
+        while (input < leftPoint || input > rightPoint) {
+            System.out.println("pls input again.");
+            s = new Scanner(System.in);
+            input = s.nextInt();
+        }
+        return input;
     }
 }
