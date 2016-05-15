@@ -2,6 +2,8 @@
  * Created by sure GM on 2016/5/10 23:29.
  */
 
+import java.util.Scanner;
+
 /**
  单词长度
  题目内容：
@@ -25,5 +27,18 @@ public class WordLength {
     public static void main(String[] args)
     {
 
+    }
+
+    public static String input() {
+        int n;
+        System.out.println("pls input a number:");
+        Scanner s = new Scanner(System.in);
+        String input = s.nextLine();
+        while (!input.endsWith(".")) {
+            System.out.println("pls input again.");
+            s = new Scanner(System.in);
+            input = s.nextLine();
+        }
+        return input;
     }
 }

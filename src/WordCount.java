@@ -2,6 +2,8 @@
  * Created by sure GM on 2016/5/12 22:54.
  */
 
+import java.util.Scanner;
+
 /**
  字数统计
  题目内容：
@@ -32,4 +34,17 @@
  */
 
 public class WordCount {
+    public static void main(String[] args)
+    {
+
+    }
+
+    public static void input(int leftPoint, int rightPoint) {
+        int n;
+        System.out.println("pls input an article:");
+        Scanner s = new Scanner(System.in);
+        String input = s.next();
+
+
+    }
 }
