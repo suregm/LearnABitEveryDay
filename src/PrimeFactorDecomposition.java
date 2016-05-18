@@ -26,4 +26,8 @@
  */
 
 public class PrimeFactorDecomposition {
+    public static void main(String[] args)
+    {
+
+    }
 }

@@ -2,6 +2,8 @@
  * Created by sure GM on 2016/5/10 23:32.
  */
 
+import java.util.Scanner;
+
 /**
  GPS数据处理
  题目内容：
@@ -65,4 +67,17 @@ public class GPSSignal {
     {
 
     }
+
+	public static String input() {
+		int n;
+		System.out.println("pls input a number:");
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+		while (!input.equals("END")) {
+			System.out.println("pls input again.");
+			s = new Scanner(System.in);
+			input = s.nextLine();
+		}
+		return input;
+	}
 }
