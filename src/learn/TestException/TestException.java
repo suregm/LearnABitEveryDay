@@ -1,4 +1,4 @@
-package learn;
+package learn.TestException;
 
 import java.io.File;
 import java.io.FileInputStream;
