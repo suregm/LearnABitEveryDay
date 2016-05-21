@@ -1,4 +1,4 @@
-package bitBeat;
+package diary;
 
 /**
  * Created by sure GM on 2016/5/17 23:45.
