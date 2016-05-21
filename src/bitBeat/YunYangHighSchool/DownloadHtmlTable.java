@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by sure GM on 2016/5/21 20:12.
+ * thank you, Chen Dong. 2015/5/29 22:03
  */
 public class DownloadHtmlTable {
 	static String baseUrl = "http://www.yyhs.net/UserList.asp?ChannelID=0&OrderType=1&page=#";
