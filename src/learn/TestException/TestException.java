@@ -17,7 +17,7 @@ public class TestException {
 		readFile();
 		try {
 			abc();		//要在调用处显示捕获异常
-		}	catch (MyException e) {
+		} catch (MyException e) {
 			e.printStackTrace();
 		}
 	}
@@ -29,9 +29,12 @@ public class TestException {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	finally {
-			System.out.println("执行了finally语句块");
+			System.out.println("Exception");
+			return;
+		} finally {
+			System.out.println("执行了finally语句块 finally end");    // try/catch中的finally语句一定会执行，故会输出“finally end”字段。
 		}
+		System.out.println("end");  // 若进入了catch，则由于有return则不会执行此语句，即得不到“end”输出。
 	}
 
 	//如果异常我不想在本方法中捕获
