@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class wr {
 	public static void main(String[] args)
 	{
-		System.out.println("pls input the date formed as '19891202'('-1' to end): ");
+		System.out.println("pls input the date formed as '19891202'('-1' to end): \n");
 		Scanner s = new Scanner(System.in);
 		int date = s.nextInt();
 		while (-1 != date) {
@@ -54,22 +54,24 @@ public class wr {
 					System.out.println();
 					break;
 				case 20160606:
-					System.out.println("As many of you prepare to take the National Higher Education Entrance Examination, I want to wish you, the next generation of scientific minds, success in your academic endeavors. This culmination of your hard work marks just the beginning of your very bright futures.\n" +
+					System.out.println("\t\tAs many of you prepare to take the National Higher Education Entrance Examination, I want to wish you, the next generation of scientific minds, success in your academic endeavors. This culmination of your hard work marks just the beginning of your very bright futures.\n" +
 							"\n" +
-							"Growing up, my parents placed a high value on education and I am grateful for the limitless opportunities provided by my studies. Whether you aim to be a doctor, teacher, scientist, musician, engineer, or a writer — be fearless in the pursuit of your aspirations. You are the next generation of big thinkers and thought leaders that will shape the future for generations to come. - SH\n" +
+							"\t\tGrowing up, my parents placed a high value on education and I am grateful for the limitless opportunities provided by my studies. Whether you aim to be a doctor, teacher, scientist, musician, engineer, or a writer — be fearless in the pursuit of your aspirations. You are the next generation of big thinkers and thought leaders that will shape the future for generations to come. - SH\n" +
 							"\n" +
-							"你们中的许多人即将参加#2016高考#，我在这里祝愿你们，新一代的科学人才，金榜题名。这是你们勤学不辍的顶峰，也标志着你们美好未来的开始。\n" +
+							"\t\t你们中的许多人即将参加#2016高考#，我在这里祝愿你们，新一代的科学人才，金榜题名。这是你们勤学不辍的顶峰，也标志着你们美好未来的开始。\n" +
 							"\n" +
-							"在我成长的过程中，我的父母一直很重视教育。我很庆幸这一路来学习给我带来得无数的机会。无论你励志成为一名医生、老师、科学家、音乐人、工程师或是作家 —— 请勇往直前地追逐你的梦想。你们是下一代的大思想家和意见领袖；未来将因你们而生。");
+							"\t\t在我成长的过程中，我的父母一直很重视教育。我很庆幸这一路来学习给我带来得无数的机会。无论你励志成为一名医生、老师、科学家、音乐人、工程师或是作家 —— 请勇往直前地追逐你的梦想。你们是下一代的大思想家和意见领袖；未来将因你们而生。\n" +
+							"\t\t——史蒂芬霍金_StephenHawking  \n" +
+							"\t\t——6月6日 08:00 來自微博 weibo.com");
 					break;
 				case 20160607:
-					System.out.println("高考加油！");
+					System.out.println("\t\t高考加油！");
 					break;
 				case 20160608:
-					System.out.println("晚上回家啦！小雨，端午节见，有粽子、饼干、棒棒糖还有德芙巧克力，o(∩_∩)o 哈哈");
+					System.out.println("\t\t晚上回家啦！小雨，端午节见，有粽子、饼干、棒棒糖还有德芙巧克力，o(∩_∩)o 哈哈");
 					break;
 				default:
-					System.out.println("thank you!");
+					System.out.println("\t\tthank you!");
 					break;
 			}
 			date = s.nextInt();
