@@ -1,4 +1,4 @@
-package learn;
+package learn.TestExtends;
 
 /**
  * Created by sure GM on 2016/5/21 18:51.

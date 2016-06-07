@@ -1,4 +1,4 @@
-package learn;
+package learn.TestAbstract;
 
 /**
  * Created by sure GM on 2016/5/21 19:14.
