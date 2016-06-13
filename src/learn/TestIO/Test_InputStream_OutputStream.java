@@ -4,6 +4,7 @@ import java.io.*;
 
 /**
  * Created by sure GM on 2016/5/21 17:07.
+ * 字节输入、输出流
  */
 public class Test_InputStream_OutputStream {
 	public static void main(String[] args) {

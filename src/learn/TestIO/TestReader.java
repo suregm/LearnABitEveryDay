@@ -3,6 +3,7 @@ package learn.TestIO;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 
 /**
  * Created by sure GM on 2016/6/13 23:38.
@@ -11,7 +12,7 @@ public class TestReader {
 
 	public static void main(String[] args) throws Exception {
 	    File file = new File("G://Code//test.txt");
-		FileReader reader = new FileReader(file);
+		Reader reader = new FileReader(file);
 		char c[] = new char[1024];  //字符数组
 		int len;
 		try {

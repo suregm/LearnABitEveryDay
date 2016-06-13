@@ -4,6 +4,7 @@ import java.io.*;
 
 /**
  * Created by sure GM on 2016/5/21 17:10.
+ * 字符输入、输出流
  */
 public class Test_Reader_Writer {
 	public static void main(String[] args) {
