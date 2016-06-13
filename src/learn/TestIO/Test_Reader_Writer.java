@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by sure GM on 2016/5/21 17:10.
  */
-public class ReaderWrite {
+public class Test_Reader_Writer {
 	public static void main(String[] args) {
 		FileReader fileReader = null;
 		BufferedReader read = null;
