@@ -13,6 +13,10 @@ public class wr {
 		int date = s.nextInt();
 		while (-1 != date) {
 			switch (date) {
+				case 20160615:
+					System.out.println("\t\t welcome to deepBLUE. http://suregm.github.io/");
+					System.out.println();
+					break;
 				case 20160525:
 					System.out.println("\t\tIt\'s raining...");
 					System.out.println();
