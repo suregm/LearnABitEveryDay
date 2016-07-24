@@ -8,3 +8,5 @@ public class Hello {
 		System.out.println("Hello, World! Java学习从入门到精通");
 	}
 }
+
+// 谢谢陈栋的高傲，入门Java，谢谢兴趣导师，继续学习。
