@@ -23,10 +23,11 @@ public class POI {
 			} else {
 				XSSFSheet sheet = wb.getSheetAt(numSheet);
 
-
+				// 删除标记有删除线的行
+				deleteStrikeRows(sheet);
 
 				for (int numRow = 0; numRow < sheet.getLastRowNum(); numRow++) {
-					if (sheet.getRow(numRow).getPhysicalNumberOfCells() == 0) {
+					if (0 == sheet.getRow(numRow).getPhysicalNumberOfCells()) {
 						continue;
 					} else {
 						XSSFRow row = sheet.getRow(numRow);
@@ -44,9 +45,9 @@ public class POI {
 	 * 删除标记有删除线的行
 	 * @param sheet
 	 */
-	public void deleteStrikeRows(XSSFSheet sheet) {
+	public static void deleteStrikeRows(XSSFSheet sheet) {
 		for (int numRow = 0; numRow < sheet.getLastRowNum(); numRow++) {
-			if (sheet.getRow(numRow).getPhysicalNumberOfCells() == 0) {
+			if (0 == sheet.getRow(numRow).getPhysicalNumberOfCells()) {
 				continue;
 			} else {
 				XSSFRow row = sheet.getRow(numRow);
