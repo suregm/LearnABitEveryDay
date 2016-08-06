@@ -1,5 +1,6 @@
 package bitBeat.QCC;
 
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.io.File;
@@ -22,6 +23,9 @@ public class POI {
 				continue;
 			} else {
 				XSSFSheet sheet = wb.getSheetAt(numSheet);
+
+				// 合并的单元格去合并
+				cellMergedCancel(sheet);
 
 				// 删除标记有删除线的行
 				deleteStrikeRows(sheet);
@@ -64,6 +68,28 @@ public class POI {
 					}
 				}
 			}
+		}
+	}
+
+	/**
+	 * 合并的单元格去合并
+	 * @param sheet
+	 */
+	public static void cellMergedCancel(XSSFSheet sheet) {
+		int numMerge = sheet.getNumMergedRegions();
+		while (numMerge > 0) {
+			CellRangeAddress region = sheet.getMergedRegion(numMerge - 1);
+			if (null != region) {
+				XSSFRow row = sheet.getRow(region.getFirstRow());
+				XSSFCell cell = row.getCell(region.getFirstColumn());
+				String value = Function.getStringNumberCellValue(cell);
+				sheet.removeMergedRegion(numMerge - 1);
+				for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
+					cell = sheet.getRow(i).getCell(region.getFirstColumn());
+					cell.setCellValue(value);
+				}
+			}
+			numMerge = sheet.getNumMergedRegions();
 		}
 	}
 
