@@ -25,7 +25,9 @@ public class Function {
 		try {
 			String[] sList = ssBase.trim().split(" \\| ");
 			for (String s : sList) {
-				s = s.replace("(", "").replace(")", "");
+				if (s.contains("(")) {
+					s = s.substring(1, s.length() - 1);
+				}
 				if (ssTarget.contains(s)) {
 					result = true;
 					break;
@@ -57,10 +59,7 @@ public class Function {
 					count++;
 				} else {
 					if (ssBase.contains("(")) {
-						ssBase = ssBase.replace("(", "");
-					}
-					if (ssBase.contains(")")) {
-						ssBase = ssBase.replace(")", "");
+						ssBase = ssBase.substring(1, ssBase.length() - 1);
 					}
 					sList.add(ssBase);
 				}
@@ -97,7 +96,7 @@ public class Function {
 				value = nf.format(cell.getNumericCellValue());
 				break;
 			case Cell.CELL_TYPE_STRING:
-				value = nf.format(cell.getStringCellValue());
+				value = cell.getStringCellValue();
 				break;
 			case Cell.CELL_TYPE_BOOLEAN:
 				value = nf.format(cell.getBooleanCellValue());

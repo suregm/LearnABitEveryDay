@@ -6,6 +6,8 @@ import org.apache.poi.xssf.usermodel.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sure GM on 2016/8/3 23:43.
@@ -46,6 +48,28 @@ public class POI {
 	}
 
 	/**
+	 * 合并的单元格去合并
+	 * @param sheet
+	 */
+	public static void cellMergedCancel(XSSFSheet sheet) {
+		int numMerge = sheet.getNumMergedRegions();
+		while (numMerge > 0) {
+			CellRangeAddress region = sheet.getMergedRegion(numMerge - 1);
+			if (null != region) {
+				XSSFRow row = sheet.getRow(region.getFirstRow());
+				XSSFCell cell = row.getCell(region.getFirstColumn());
+				String value = Function.getStringNumberCellValue(cell);
+				sheet.removeMergedRegion(numMerge - 1);
+				for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
+					cell = sheet.getRow(i).getCell(region.getFirstColumn());
+					cell.setCellValue(value);
+				}
+			}
+			numMerge = sheet.getNumMergedRegions();
+		}
+	}
+
+	/**
 	 * 删除标记有删除线的行
 	 * @param sheet
 	 */
@@ -72,24 +96,30 @@ public class POI {
 	}
 
 	/**
-	 * 合并的单元格去合并
+	 * 单元格内换行拆分，形成多行，保证每行单元格内值唯一
 	 * @param sheet
 	 */
-	public static void cellMergedCancel(XSSFSheet sheet) {
-		int numMerge = sheet.getNumMergedRegions();
-		while (numMerge > 0) {
-			CellRangeAddress region = sheet.getMergedRegion(numMerge - 1);
-			if (null != region) {
-				XSSFRow row = sheet.getRow(region.getFirstRow());
-				XSSFCell cell = row.getCell(region.getFirstColumn());
-				String value = Function.getStringNumberCellValue(cell);
-				sheet.removeMergedRegion(numMerge - 1);
-				for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
-					cell = sheet.getRow(i).getCell(region.getFirstColumn());
-					cell.setCellValue(value);
+	public static void cellNewlineCancel(XSSFSheet sheet) {
+		List<String> valueList = new ArrayList<>();
+
+		for (int numRow = 0; numRow < sheet.getLastRowNum(); numRow++) {
+			if (0 == sheet.getRow(numRow).getPhysicalNumberOfCells()) {
+				continue;
+			} else {
+				XSSFRow row = sheet.getRow(numRow);
+				for (int numCell = 0; numCell < row.getLastCellNum(); numCell++) {
+					XSSFCell cell = (XSSFCell) row.getCell(numCell);
+					String value = Function.getStringNumberCellValue(cell);
+
+					int count = 0;
+					for (int i = 0; i <= count; i++) {
+						if (value.contains("\n")) {
+							int index = value.indexOf("\n");
+
+						}
+					}
 				}
 			}
-			numMerge = sheet.getNumMergedRegions();
 		}
 	}
 
