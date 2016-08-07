@@ -5,4 +5,5 @@ package bitBeat.QCC;
  */
 public class JDBC {
 
+
 }

@@ -17,7 +17,8 @@ public class Function {
 	 * 2016.08.04
 	 * @param ssTarget 目标字符串
 	 * @param ssBase 基线字符串
-	 *               格式为："(游泳) | (骑行) | (爬山) | (PROGRAMMING)"
+	 *               格式为："(游泳)" + " | (骑行)" + " | (看书（技术、小说、文学）)" + " | (爬山)" +" | (PROGRAMMING(Java, Android, Python))"
+	 *               或格式为："(PROGRAMMING(Java, Android, Python))" + " | (游泳)" + " | (骑行)" + " | (看书（技术、小说、文学）)" + " | (爬山)"
 	 * @return
 	 */
 	public static boolean contains_GoMX(String ssTarget, String ssBase) {
@@ -44,7 +45,8 @@ public class Function {
 	 * 2015.11.23
 	 * @param ssTarget 目标字符串
 	 * @param ssBase 基线字符串
-	 *               格式为："(游泳) | (骑行) | (爬山) | (PROGRAMMING)"
+	 *               格式为："(游泳)" + " | (骑行)" + " | (看书（技术、小说、文学）)" + " | (爬山)" +" | (PROGRAMMING(Java, Android, Python))"
+	 *               或格式为："(PROGRAMMING(Java, Android, Python))" + " | (游泳)" + " | (骑行)" + " | (看书（技术、小说、文学）)" + " | (爬山)"
 	 * @return
 	 */
 	public static boolean contains_Sure(String ssTarget, String ssBase) {

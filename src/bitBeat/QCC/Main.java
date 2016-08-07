@@ -21,5 +21,8 @@ public class Main {
 		System.out.println(Function.contains_Sure("PROGRAMMING", Constant.HOBBIES));
 		System.out.println(Function.contains_Sure("PROGRAMMING(Java, Android, Python)", Constant.HOBBIES));
 		System.out.println(Function.contains_Sure("PROGRAMMING(Java, Android, Python)", Constant.HOBBIES2));
+
+		Supermarket su = new Supermarket();
+		System.out.println(new Supermarket().supermarket);
 	}
 }
