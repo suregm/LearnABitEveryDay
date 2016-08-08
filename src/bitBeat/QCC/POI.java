@@ -102,6 +102,8 @@ public class POI {
 	public static void cellNewlineCancel(XSSFSheet sheet) {
 		List<String> valueList = new ArrayList<>();
 
+		int colIndex_IndiGrpID = 5;
+
 		for (int numRow = 0; numRow < sheet.getLastRowNum(); numRow++) {
 			if (0 == sheet.getRow(numRow).getPhysicalNumberOfCells()) {
 				continue;
@@ -115,10 +117,27 @@ public class POI {
 					for (int i = 0; i <= count; i++) {
 						if (value.contains("\n")) {
 							int index = value.indexOf("\n");
-
+							valueList.add(value.substring(0, index));
+							value = value.replace(valueList.get(count) + "\n", "");
+						} else {
+							valueList.add(value);
 						}
 					}
+
+					// 插入行
+					for (int j = 0; j < count; j++) {
+						sheet.shiftRows(numRow + j + 1, sheet.getLastRowNum(), +1);
+						sheet.createRow(numRow + j + 1);
+
+						for (numCell = 0; numCell < row.getLastCellNum(); numCell++) {
+							sheet.getRow(numRow + j + 1).createCell(numCell).setCellValue(row.getCell(numCell).getStringCellValue());
+						}
+
+						sheet.getRow(numRow + j + 1).getCell(colIndex_IndiGrpID).setCellValue(valueList.get(j + 1));
+					}
+					row.getCell(colIndex_IndiGrpID).setCellValue(valueList.get(0));
 				}
+
 			}
 		}
 	}
