@@ -32,6 +32,9 @@ public class POI {
 				// 删除标记有删除线的行
 				deleteStrikeRows(sheet);
 
+				// 单元格内换行拆分
+				cellNewlineCancel(sheet);
+
 				for (int numRow = 0; numRow < sheet.getLastRowNum(); numRow++) {
 					if (0 == sheet.getRow(numRow).getPhysicalNumberOfCells()) {
 						continue;
