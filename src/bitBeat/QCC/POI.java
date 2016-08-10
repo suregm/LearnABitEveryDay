@@ -1,8 +1,11 @@
 package bitBeat.QCC;
 
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -147,7 +150,58 @@ public class POI {
 
 	public void createStyle() {
 		XSSFWorkbook wb = new XSSFWorkbook();
-		XSSFSheet sheet = wb.createSheet("表格单元格格式化");
+		XSSFSheet sheet = wb.createSheet("createStyle");
+
+		// 设置单元格字体格式
+		XSSFRow rowFont = sheet.createRow(0);
+		XSSFCell cellFont = rowFont.createCell(0);
+		cellFont.setCellValue("Font Style");
+		// 创建单元格样式对象
+		XSSFCellStyle styleFont = (XSSFCellStyle) wb.createCellStyle();
+		// 创建字体对象
+		Font font = wb.createFont();
+		font.setItalic(true);
+		font.setColor(Font.COLOR_RED);
+		font.setFontHeightInPoints((short)22);
+		font.setFontName("XHei");
+		font.setUnderline(Font.U_DOUBLE);   // 添加（Font.U_SINGLE单条下划线 / Font.U_DOUBLE双条下划线）
+		font.setStrikeout(true);
+		// 应用格式
+		styleFont.setFont(font);
+		cellFont.setCellStyle(styleFont);
+
+		// 设置单元格边框格式
+		XSSFRow rowBorder = sheet.createRow(1);
+		XSSFCell cellBorder = rowBorder.createCell(1);
+		cellBorder.setCellValue("Border Style");
+		// 创建单元格样式对象
+		XSSFCellStyle styleBorder = (XSSFCellStyle)wb.createCellStyle();
+		// 设置单元格边框样式
+		styleBorder.setBorderBottom(CellStyle.BORDER_HAIR);
+		styleBorder.setBorderTop(CellStyle.BORDER_DASHED);
+		styleBorder.setBorderLeft(CellStyle.BORDER_DOUBLE);
+		styleBorder.setBorderRight(CellStyle.BORDER_THIN);
+		// 设置单元格边框颜色
+		styleBorder.setBottomBorderColor(new XSSFColor(Color.RED));
+		styleBorder.setTopBorderColor(new XSSFColor(Color.GREEN));
+		styleBorder.setLeftBorderColor(new XSSFColor(Color.BLUE));
+		// 应用格式
+		cellBorder.setCellStyle(styleBorder);
+
+		// 设置单元格内容对齐方式
+		XSSFRow rowAlign = sheet.createRow(2);
+		XSSFCell cellAlign = rowAlign.createCell(2);
+		cellBorder.setCellValue("Align Style");
+		// 创建单元格样式对象
+		XSSFCellStyle styleAlign = (XSSFCellStyle)wb.createCellStyle();
+		// 设置单元格内容水平对其方式
+		styleAlign.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		// 设置单元格内容垂直对其方式
+		styleAlign.setVerticalAlignment(XSSFCellStyle.VERTICAL_BOTTOM);
+		// 应用格式
+		cellAlign.setCellStyle(styleAlign);
+
+
 	}
 
 }
