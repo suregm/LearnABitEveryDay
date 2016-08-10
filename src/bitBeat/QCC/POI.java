@@ -145,4 +145,9 @@ public class POI {
 		}
 	}
 
+	public void createStyle() {
+		XSSFWorkbook wb = new XSSFWorkbook();
+		XSSFSheet sheet = wb.createSheet("表格单元格格式化");
+	}
+
 }
