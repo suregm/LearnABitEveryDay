@@ -61,7 +61,17 @@ public class POI {
 		os.close();
 	}
 
+	public static ArrayList<Record> HeaderList(XSSFSheet sheet) {
+		ArrayList<Record> headerList = new ArrayList<Record>();
+		int colIndex = -1;
 
+		XSSFRow row = sheet.getRow(0);
+		for (int numCell = 0; numCell < row.getLastCellNum(); numCell++) {
+
+		}
+
+		return headerList;
+	}
 
 	/**
 	 * 合并的单元格去合并
