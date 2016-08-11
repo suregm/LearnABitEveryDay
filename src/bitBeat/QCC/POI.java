@@ -61,6 +61,8 @@ public class POI {
 		os.close();
 	}
 
+
+
 	/**
 	 * 合并的单元格去合并
 	 * @param sheet
@@ -81,6 +83,14 @@ public class POI {
 			}
 			numMerge = sheet.getNumMergedRegions();
 		}
+	}
+
+	/**
+	 * 单元格向下填充
+	 * @param sheet
+	 */
+	public static void cellFillDown(XSSFSheet sheet) {
+
 	}
 
 	/**
@@ -364,4 +374,64 @@ public class POI {
 		return style;
 	}
 
+}
+
+class Record {
+	private String colHeaderName0;
+	private String colHeaderName1;
+	private String colHeaderName2;
+	private String colHeaderName3;
+	private String colHeaderName4;
+
+	public String getColHeaderName0() {
+		return this.colHeaderName0;
+	}
+
+	public void setColHeaderName0(String colHeaderName0) {
+		this.colHeaderName0 = colHeaderName0;
+	}
+
+	public String getColHeaderName1() {
+		return this.colHeaderName1;
+	}
+
+	public void setColHeaderName1(String colHeaderName1) {
+		this.colHeaderName1 = colHeaderName1;
+	}
+
+	public String getColHeaderName2() {
+		return this.colHeaderName2;
+	}
+
+	public void setColHeaderName2(String colHeaderName2) {
+		this.colHeaderName2 = colHeaderName2;
+	}
+
+	public String getColHeaderName3() {
+		return this.colHeaderName3;
+	}
+
+	public void setColHeaderName3(String colHeaderName3) {
+		this.colHeaderName3 = colHeaderName3;
+	}
+
+	public String getColHeaderName4() {
+		return this.colHeaderName4;
+	}
+
+	public void setColHeaderName4(String colHeaderName4) {
+		this.colHeaderName4 = colHeaderName4;
+	}
+
+	public Record() {
+
+	}
+
+	public Record(String colHeaderName0, String colHeaderName1, String colHeaderName2, String colHeaderName3, String colHeaderName4) {
+		this.colHeaderName0 = colHeaderName0;
+		this.colHeaderName1 = colHeaderName1;
+		this.colHeaderName2 = colHeaderName2;
+		this.colHeaderName3 = colHeaderName3;
+		this.colHeaderName4 = colHeaderName4;
+	}
 }
