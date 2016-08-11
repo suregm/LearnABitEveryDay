@@ -12,6 +12,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bitBeat.YunYangHighSchool.FileSaver.sheet;
+import static bitBeat.YunYangHighSchool.FileSaver.wb;
+
 /**
  * Created by sure GM on 2016/8/3 23:43.
  */
@@ -148,9 +151,12 @@ public class POI {
 		}
 	}
 
-	public void createStyle() {
-		XSSFWorkbook wb = new XSSFWorkbook();
-		XSSFSheet sheet = wb.createSheet("createStyle");
+	/**
+	 * 设置单元格格式
+	 * @param sheet
+	 */
+	public void createStyle(XSSFWorkbook wb) {
+		XSSFSheet sheet = wb.createSheet("Create Cell Style");
 
 		// 设置单元格字体格式
 		XSSFRow rowFont = sheet.createRow(0);
@@ -188,9 +194,19 @@ public class POI {
 		// 应用格式
 		cellBorder.setCellStyle(styleBorder);
 
+		// 设置单元格的高度和宽度
+		XSSFRow rowSize = sheet.createRow(2);
+		rowSize.setHeightInPoints(26);  // 设置行高
+		XSSFCell cellSize = rowSize.createCell(2);
+		cellSize.setCellValue("Size Style");
+		String cellSizeValue = "设置Size Style";   // 字符串的长度为12，表示该字符串中有12个字符，忽略中英文
+		// 设置单元格的长度为cellSizeValue的长度。而sheet.setColumnWidth使用cellSizeValue的字节数
+		// cellSizeValue.getBytes().length == 14
+		sheet.setColumnWidth(2, (cellSizeValue.getBytes().length) * 256);
+
 		// 设置单元格内容对齐方式
-		XSSFRow rowAlign = sheet.createRow(2);
-		XSSFCell cellAlign = rowAlign.createCell(2);
+		XSSFRow rowAlign = sheet.createRow(3);
+		XSSFCell cellAlign = rowAlign.createCell(3);
 		cellBorder.setCellValue("Align Style");
 		// 创建单元格样式对象
 		XSSFCellStyle styleAlign = (XSSFCellStyle)wb.createCellStyle();
@@ -200,7 +216,6 @@ public class POI {
 		styleAlign.setVerticalAlignment(XSSFCellStyle.VERTICAL_BOTTOM);
 		// 应用格式
 		cellAlign.setCellStyle(styleAlign);
-
 
 	}
 
