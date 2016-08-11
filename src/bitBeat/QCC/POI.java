@@ -8,12 +8,10 @@ import org.apache.poi.xssf.usermodel.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static bitBeat.YunYangHighSchool.FileSaver.sheet;
-import static bitBeat.YunYangHighSchool.FileSaver.wb;
 
 /**
  * Created by sure GM on 2016/8/3 23:43.
@@ -21,6 +19,7 @@ import static bitBeat.YunYangHighSchool.FileSaver.wb;
 public class POI {
 
 	public static void main (String[] args) throws Exception {
+
 		File file = new File("D://yyzx.xlsx");
 		InputStream is = new FileInputStream(file); // 获取输入流
 //		Workbook workbook = WorkbookFactory.create(is); // 这种方式 Excel 2003/2007/2010 都可以处理
@@ -48,12 +47,16 @@ public class POI {
 						XSSFRow row = sheet.getRow(numRow);
 						for (int numCell = 0; numCell < row.getLastCellNum(); numCell++) {
 							XSSFCell cell = row.getCell(numCell);
-
+							String cellValue = Function.getStringNumberCellValue(cell);
 						}
 					}
 				}
 			}
 		}
+
+		FileOutputStream os = new FileOutputStream("document/POI.xlsx");
+		wb.write(os);
+		os.close();
 	}
 
 	/**
@@ -153,7 +156,7 @@ public class POI {
 
 	/**
 	 * 设置单元格格式
-	 * @param sheet
+	 * @param wb
 	 */
 	public void createStyle(XSSFWorkbook wb) {
 		XSSFSheet sheet = wb.createSheet("Create Cell Style");
@@ -176,9 +179,18 @@ public class POI {
 		styleFont.setFont(font);
 		cellFont.setCellStyle(styleFont);
 
+		// 设置单元格自动换行格式
+		XSSFRow rowWrap = sheet.createRow(1);
+		XSSFCell cellWrap = rowFont.createCell(1);
+		cellWrap.setCellValue("Wrap Style");
+		// 创建单元格样式对象
+		XSSFCellStyle styleWrap = (XSSFCellStyle)wb.createCellStyle();
+		styleWrap.setWrapText(true);
+		cellWrap.setCellStyle(styleWrap);
+
 		// 设置单元格边框格式
-		XSSFRow rowBorder = sheet.createRow(1);
-		XSSFCell cellBorder = rowBorder.createCell(1);
+		XSSFRow rowBorder = sheet.createRow(2);
+		XSSFCell cellBorder = rowBorder.createCell(2);
 		cellBorder.setCellValue("Border Style");
 		// 创建单元格样式对象
 		XSSFCellStyle styleBorder = (XSSFCellStyle)wb.createCellStyle();
@@ -195,18 +207,18 @@ public class POI {
 		cellBorder.setCellStyle(styleBorder);
 
 		// 设置单元格的高度和宽度
-		XSSFRow rowSize = sheet.createRow(2);
+		XSSFRow rowSize = sheet.createRow(3);
 		rowSize.setHeightInPoints(26);  // 设置行高
-		XSSFCell cellSize = rowSize.createCell(2);
+		XSSFCell cellSize = rowSize.createCell(3);
 		cellSize.setCellValue("Size Style");
 		String cellSizeValue = "设置Size Style";   // 字符串的长度为12，表示该字符串中有12个字符，忽略中英文
 		// 设置单元格的长度为cellSizeValue的长度。而sheet.setColumnWidth使用cellSizeValue的字节数
 		// cellSizeValue.getBytes().length == 14
-		sheet.setColumnWidth(2, (cellSizeValue.getBytes().length) * 256);
+		sheet.setColumnWidth(3, (cellSizeValue.getBytes().length) * 256);
 
 		// 设置单元格内容对齐方式
-		XSSFRow rowAlign = sheet.createRow(3);
-		XSSFCell cellAlign = rowAlign.createCell(3);
+		XSSFRow rowAlign = sheet.createRow(4);
+		XSSFCell cellAlign = rowAlign.createCell(4);
 		cellBorder.setCellValue("Align Style");
 		// 创建单元格样式对象
 		XSSFCellStyle styleAlign = (XSSFCellStyle)wb.createCellStyle();
@@ -217,6 +229,17 @@ public class POI {
 		// 应用格式
 		cellAlign.setCellStyle(styleAlign);
 
+		// 设置单元格合并
+		XSSFRow rowRegion = sheet.createRow(5);
+		XSSFCell cellRegion = rowAlign.createCell(5);
+		cellRegion.setCellValue("Region Style");
+		CellRangeAddress region = new CellRangeAddress(5, 6, 5, 6);
+		sheet.addMergedRegion(region);
+		// 创建单元格样式对象
+		XSSFCellStyle styleRegion = (XSSFCellStyle)wb.createCellStyle();
+		styleRegion.setAlignment(CellStyle.ALIGN_CENTER);
+		styleRegion.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		cellRegion.setCellStyle(styleRegion);
 	}
 
 }
