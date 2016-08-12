@@ -56,18 +56,30 @@ public class POI {
 			}
 		}
 
-		FileOutputStream os = new FileOutputStream("document/POI.xlsx");
+		FileOutputStream os = new FileOutputStream("D://yyzx.xlsx");
 		wb.write(os);
 		os.close();
 	}
 
-	public static ArrayList<Record> HeaderList(XSSFSheet sheet) {
-		ArrayList<Record> headerList = new ArrayList<Record>();
+	/**
+	 * 返回构造列标题的列索引
+	 * @param sheet
+	 * @return
+	 */
+	public static ArrayList<Integer> HeaderList(XSSFSheet sheet) {
+		ArrayList<Integer> headerList = new ArrayList<Integer>();
+		Record record = new Record();
+		String[] recordArray = new String[]{record.getColHeaderName0(), record.getColHeaderName1(), record.getColHeaderName2(), record.getColHeaderName3(), record.getColHeaderName4()};
 		int colIndex = -1;
 
 		XSSFRow row = sheet.getRow(0);
-		for (int numCell = 0; numCell < row.getLastCellNum(); numCell++) {
-
+		for (String recordItem : recordArray) {
+			for (int numCell = 0; numCell < row.getLastCellNum(); numCell++) {
+				if (Function.contains_GoMX(Function.getStringNumberCellValue(row.getCell(numCell)), recordItem) {
+					colIndex = numCell;
+					break;
+				}
+			}
 		}
 
 		return headerList;
