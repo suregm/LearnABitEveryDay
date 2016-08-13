@@ -112,7 +112,7 @@ public class POI {
 	 * @param sheet
 	 */
 	public static void cellFillDown(XSSFSheet sheet) {
-
+		int colIndex = 1;
 	}
 
 	/**
