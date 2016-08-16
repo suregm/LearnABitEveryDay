@@ -112,7 +112,17 @@ public class POI {
 	 * @param sheet
 	 */
 	public static void cellFillDown(XSSFSheet sheet) {
-		for (int i = 0; i < sheet.getco)
+		for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
+			for (int i = 0; i < sheet.getLastRowNum(); i++) {
+				XSSFRow row = sheet.getRow(i);
+				XSSFCell cell = row.getCell(j);
+				if (Function.getStringNumberCellValue(cell) != null && !Function.getStringNumberCellValue(cell).equals("")) {
+					continue;
+				} else {
+					cell.setCellValue(Function.getStringNumberCellValue(sheet.getRow(i - 1).getCell(j)));
+				}
+			}
+		}
 	}
 
 	/**
