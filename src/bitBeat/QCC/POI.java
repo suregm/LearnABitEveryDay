@@ -112,7 +112,7 @@ public class POI {
 	 * @param sheet
 	 */
 	public static void cellFillDown(XSSFSheet sheet) {
-		for (int i = 0; i < )
+		for (int i = 0; i < sheet.getco)
 	}
 
 	/**
