@@ -36,6 +36,9 @@ public class POI {
 				// 合并的单元格去合并
 				cellMergedCancel(sheet);
 
+				// 空单元格填充
+				cellFillDown(sheet);
+
 				// 删除标记有删除线的行
 				deleteStrikeRows(sheet);
 
