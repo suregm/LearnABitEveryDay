@@ -78,7 +78,7 @@ public class POI {
 		XSSFRow row = sheet.getRow(0);
 		for (String recordItem : recordArray) {
 			for (int numCell = 0; numCell < row.getLastCellNum(); numCell++) {
-				if (Function.contains_GoMX(Function.getStringNumberCellValue(row.getCell(numCell)), recordItem) {
+				if (Function.contains_GoMX(Function.getStringNumberCellValue(row.getCell(numCell)), recordItem)) {
 					colIndex = numCell;
 					break;
 				}
