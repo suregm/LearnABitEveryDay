@@ -291,6 +291,7 @@ public class POI {
 
 	/**
 	 * create a library of cell styles
+	 * 摘录自网络上的片段，采用了Map，感谢
 	 */
 	private static Map<String, CellStyle> createStyles(Workbook wb){
 		Map<String, CellStyle> styles = new HashMap<String, CellStyle>();
