@@ -1,11 +1,9 @@
 package bitBeat.QCC;
 
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -247,9 +245,9 @@ public class POI {
 		styleBorder.setBorderLeft(CellStyle.BORDER_DOUBLE);
 		styleBorder.setBorderRight(CellStyle.BORDER_THIN);
 		// 设置单元格边框颜色
-		styleBorder.setBottomBorderColor(new XSSFColor(Color.RED));
-		styleBorder.setTopBorderColor(new XSSFColor(Color.GREEN));
-		styleBorder.setLeftBorderColor(new XSSFColor(Color.BLUE));
+//		styleBorder.setBottomBorderColor(new XSSFColor(Color.RED));
+//		styleBorder.setTopBorderColor(new XSSFColor(Color.GREEN));
+//		styleBorder.setLeftBorderColor(new XSSFColor(Color.BLUE));
 		// 应用格式
 		cellBorder.setCellStyle(styleBorder);
 
