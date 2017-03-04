@@ -3,10 +3,7 @@ package bitBeat;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Set;
@@ -15,6 +12,9 @@ import java.util.Set;
  * Created by sure GM on 2017/3/2 23:57.
  */
 public class IP {
+
+	public IP() throws SocketException {
+	}
 
 	public static void main(String[] args) {
 		easyIP();
@@ -103,5 +103,26 @@ public class IP {
 			System.out.println(name + ":" + properties.getProperty(name));
 		}
 	}
+
+	// 在 Windows 和 Linux下正确执行的代码如下：
+	Enumeration allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+	InetAddress ip = null;
+	while (allNetInterfaces.hasMoreElements())
+	{
+		NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
+		System.out.println(netInterface.getName());
+		Enumeration addresses = netInterface.getInetAddresses();
+		while (addresses.hasMoreElements())
+		{
+			ip = (InetAddress) addresses.nextElement();
+			if (ip != null && ip instanceof Inet4Address)
+			{
+				System.out.println("本机的IP = " + ip.getHostAddress());
+			}
+		}
+	}
+
+	// 获取远程服务器的ip地址
+
 
 }
