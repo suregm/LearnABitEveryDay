@@ -30,6 +30,7 @@ public class IP {
 
 	/**
 	 * 最常用方法，但是不推荐，如果开vpn或者添加多网卡后获得的是小网ip或是第一个ip
+	 *
 	 * @return
 	 */
 	private static String easyIP() {
@@ -49,6 +50,7 @@ public class IP {
 
 	/**
 	 * 命令行findstr方法，获得多组ip，需要再次筛选
+	 *
 	 * @return
 	 */
 	// 方法一，使用CMD命令：
@@ -68,11 +70,12 @@ public class IP {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "getLocalIPByCMD： " +  sb.toString();
+		return "getLocalIPByCMD： " + sb.toString();
 	}
 
 	/**
 	 * 通过NetworkInterface获取网络属性及判断条件inetAddress.isSiteLocalAddress()进行筛选，强烈推荐
+	 *
 	 * @return
 	 */
 	// 方法二，使用Java方法： https://zhidao.baidu.com/question/241423332.html?fr=iks&word=java+%B1%BE%BB%FAip&ie=gbk
@@ -93,31 +96,35 @@ public class IP {
 			}
 		} catch (SocketException e) {
 		}
-		return "getLocalIPByJava： " +  sb.toString();
+		return "getLocalIPByJava： " + sb.toString();
 	}
 
 	public static void getSystemProperties() {
 		Properties properties = System.getProperties();
 		Set<String> set = properties.stringPropertyNames(); //获取java虚拟机和系统的信息。
-		for(String name : set){
+		for (String name : set) {
 			System.out.println(name + ":" + properties.getProperty(name));
 		}
 	}
 
 	// 在 Windows 和 Linux下正确执行的代码如下：
-	Enumeration allNetInterfaces = NetworkInterface.getNetworkInterfaces();
-	InetAddress ip = null;
-	while (allNetInterfaces.hasMoreElements())
-	{
-		NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
-		System.out.println(netInterface.getName());
-		Enumeration addresses = netInterface.getInetAddresses();
-		while (addresses.hasMoreElements())
-		{
-			ip = (InetAddress) addresses.nextElement();
-			if (ip != null && ip instanceof Inet4Address)
-			{
-				System.out.println("本机的IP = " + ip.getHostAddress());
+	public static void getLocalIPForWindowsAndLinux() {
+		Enumeration allNetInterfaces = null;
+		try {
+			allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
+		InetAddress ip = null;
+		while(allNetInterfaces.hasMoreElements()) {
+			NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
+			System.out.println(netInterface.getName());
+			Enumeration addresses = netInterface.getInetAddresses();
+			while (addresses.hasMoreElements()) {
+				ip = (InetAddress) addresses.nextElement();
+				if (ip != null && ip instanceof Inet4Address) {
+					System.out.println("本机的IP = " + ip.getHostAddress());
+				}
 			}
 		}
 	}
