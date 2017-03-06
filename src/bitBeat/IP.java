@@ -7,6 +7,8 @@ import java.net.*;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by sure GM on 2017/3/2 23:57.
@@ -128,6 +130,31 @@ public class IP {
 			}
 		}
 	}
+
+	// 获取linux系统本地ip
+	/**
+	 * Get host IP address
+	 *
+	 * @return IP Address
+	 */
+	private InetAddress getAddress() {
+		try {
+			for (Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces(); interfaces.hasMoreElements();) {
+				NetworkInterface networkInterface = interfaces.nextElement();
+				if (networkInterface.isLoopback() || networkInterface.isVirtual() || !networkInterface.isUp()) {
+					continue;
+				}
+				Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
+				if (addresses.hasMoreElements()) {
+					return addresses.nextElement();
+				}
+			}
+		} catch (Exception e) {
+			Logger.getLogger("").log(Level.INFO, "Error when getting host ip address: <{}>.");
+		}
+		return null;
+	}
+
 
 	// 获取远程服务器的ip地址
 
