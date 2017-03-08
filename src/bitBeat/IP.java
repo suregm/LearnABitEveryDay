@@ -394,4 +394,31 @@ public class IP {
 		return request.getRemoteAddr();
 	}
 	// 第三种是最合适的，最清晰理解的
+
+	/**
+	 * getIpAddr：获取用户真实IP
+	 *
+	 * @param request
+	 * @return
+	 */
+	public static String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("X-Real-IP");
+		if (null != ip && !"".equals(ip.trim())
+				&& !"unknown".equalsIgnoreCase(ip)) {
+			return ip;
+		}
+		ip = request.getHeader("X-Forwarded-For");
+		if (null != ip && !"".equals(ip.trim())
+				&& !"unknown".equalsIgnoreCase(ip)) {
+			// 多次反向代理后会有多个IP值，第一个为真实IP。
+			int index = ip.indexOf(',');
+			if (index != -1) {
+				return ip.substring(0, index);
+			} else {
+				return ip;
+			}
+		}
+		return request.getRemoteAddr();
+	}
+
 }
