@@ -75,11 +75,24 @@ public class JDBC {
 			}   //end finally try
 		}   //end try
 		System.out.println("Goodbye!");
-
-
-
-
 	}
+
+
+
+	/** java中预处理PrepareStatement为什么能起到防止SQL注入的作用
+	Kyoya12XV3 | 浏览 390 次
+	推荐于2016-07-31 21:16:59 最佳答案
+	不使用这个，我们一般做查询或更新的条件，是用字符串拼起来的，例如
+	String id = (String)request.getAttribute("id");    //假设页面上传了一个id值过来
+	String SQL = "SELECT ID,NAME FROM USER WHERE ID='" + id + "'";    //拼接成一个完整的sql语句
+	但是这样带来了一个风险，因为id是界面上客户输入的，所以如果没有进入校验，有人输入了一个aa' or '1'='1  把这个值代入到上面的sql语句里面，sql语句就变成了
+	SELECT ID,NAME FROM USER WHERE ID='aa' or '1'='1'
+	这样就能查到所有的数据了，也就是SQL注入.
+
+	但是，如果用preparedstatement的话，就没有这个问题
+	String SQL = "SELECT ID,NAME FROM USER WHERE ID=?"
+	然后再将值set进去，如果值里面有引号等字符时，会自动的启用转义，不会破坏这个SQL语句的结果，也就不会造成SQL注入了。
+	 **/
 }
 
 
