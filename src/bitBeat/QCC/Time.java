@@ -15,9 +15,10 @@ public class Time {
 	 * @param time
 	 * @return
 	 */
-	public static long time2Millis(String time) {
+	public static long time2Millis(String time, String format) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 
 		long millis = 0;
 		try {
@@ -34,7 +35,7 @@ public class Time {
 	 * 毫秒转换为时间字符串
 	 * @param millis
 	 */
-	public static String millis2Time(long millis) {
+	public static String millis2Time(long millis, String format) {
 		java.util.Calendar c = java.util.Calendar.getInstance();
 		c.setTimeInMillis(millis);
 
@@ -45,7 +46,8 @@ public class Time {
 
 
 		Date date = new Date(millis);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("format");
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String dateStr = sdf.format(date);
 		System.out.println(dateStr);
 		return dateStr;

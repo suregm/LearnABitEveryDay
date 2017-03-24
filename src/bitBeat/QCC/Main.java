@@ -6,6 +6,10 @@ package bitBeat.QCC;
 public class Main {
 
 	public static void main(String[] args) {
+
+		String ss = "123 234  3434     4343";
+		System.out.println(ss.replace(" ", ","));
+
 		System.out.println(Function.contains_GoMX("Sure GM", Constant.NAME));
 		System.out.println(Function.contains_GoMX("ure G", Constant.NAME));
 		System.out.println(Function.contains_GoMX("学习", Constant.HOBBIES));
