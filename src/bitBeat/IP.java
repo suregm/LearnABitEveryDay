@@ -230,6 +230,7 @@ public class IP {
 	}
 
 
+/**
 	// 在JSP里，获取客户端的IP地址的方法是：request.getRemoteAddr（），这种方法在大部分情况下都是有效的。但是在通过了Apache，Squid等反向代理软件就不能获取到客户端的真实IP地址了。
 	// 经过代理以后，由于在客户端和服务之间增加了中间层，因此服务器无法直接拿到客户端的IP，服务器端应用也无法直接通过转发请求的地址返回给客户端。但是在转发请求的HTTP头信息中，增加了X－FORWARDED－FOR信息。用以跟踪原有的客户端IP地址和原来客户端请求的服务器地址。当我们访问http://www.javapeixun.com.cn /index.jsp/ 时，其实并不是我们浏览器真正访问到了服务器上的index.jsp文件，而是先由代理服务器去访问http://192.168.1.110：2046/index.jsp ，代理服务器再将访问到的结果返回给我们的浏览器，因为是代理服务器去访问index.jsp的，所以index.jsp中通过request.getRemoteAddr（）的方法获取的IP实际上是代理服务器的地址，并不是客户端的IP地址。
 	// 获取远程服务器的ip地址
@@ -265,23 +266,23 @@ public class IP {
 	 * 若新增其他的需要增加或者修改其中的值。
 	 * </p>
 	 */
-	private static final String[] PROXY_REMOTE_IP_ADDRESS = { "X-Forwarded-For", "X-Real-IP" };
+//	private static final String[] PROXY_REMOTE_IP_ADDRESS = { "X-Forwarded-For", "X-Real-IP" };
 	/**
 	 * <p>
 	 * 获取请求的客户端的 IP 地址。若应用服务器前端配有反向代理的 Web 服务器，
 	 * 需要在 Web 服务器中将客户端原始请求的 IP 地址加入到 HTTP header 中。
-	 * 详见 {@link #PROXY_REMOTE_IP_ADDRESS}
+	 * 详见" {@link #PROXY_REMOTE_IP_ADDRESS}
 	 * </p>
 	 */
-	public static String getRemoteIp( HttpServletRequest request ) {
-		for ( int i = 0 ; i < PROXY_REMOTE_IP_ADDRESS.length ; i++ ) {
-			String ip = request.getHeader( PROXY_REMOTE_IP_ADDRESS[i] );
-			if ( ip != null && ip.trim().length > 0 ) {
-				return getRemoteIpFromForward( ip.trim() );
-			}
-		}
-		return request.getRemoteHost();
-	}
+//	public static String getRemoteIp( HttpServletRequest request ) {
+//		for ( int i = 0 ; i < PROXY_REMOTE_IP_ADDRESS.length ; i++ ) {
+//			String ip = request.getHeader( PROXY_REMOTE_IP_ADDRESS[i] );
+//			if ( ip != null && ip.trim().length > 0 ) {
+//				return getRemoteIpFromForward( ip.trim() );
+//			}
+//		}
+//		return request.getRemoteHost();
+//	}
 
 	/**
 	 * <p>
@@ -327,98 +328,98 @@ public class IP {
 	 * @param request
 	 * @return ip
 	 */
-	public static String getLocalIp(HttpServletRequest request) {
-		String remoteAddr = request.getRemoteAddr();
-		String forwarded = request.getHeader("X-Forwarded-For");
-		String realIp = request.getHeader("X-Real-IP");
-
-		String ip = null;
-		if (realIp == null) {
-			if (forwarded == null) {
-				ip = remoteAddr;
-			} else {
-				ip = remoteAddr + "/" + forwarded.split(",")[0];
-			}
-		} else {
-			if (realIp.equals(forwarded)) {
-				ip = realIp;
-			} else {
-				if(forwarded != null){
-					forwarded = forwarded.split(",")[0];
-				}
-				ip = realIp + "/" + forwarded;
-			}
-		}
-		return ip;
-	}
-
-	// 第二种代码:
-	public static String getIp(HttpServletRequest request) {
-		String remoteAddr = request.getRemoteAddr();
-		String forwarded = request.getHeader("X-Forwarded-For");
-		String realIp = request.getHeader("X-Real-IP");
-
-		String ip = null;
-		if (realIp == null) {
-			if (forwarded == null) {
-				ip = remoteAddr;
-			} else {
-				ip = remoteAddr + "/" + forwarded;
-			}
-		} else {
-			if (realIp.equals(forwarded)) {
-				ip = realIp;
-			} else {
-				ip = realIp + "/" + forwarded.replaceAll(", " + realIp, "");
-			}
-		}
-		return ip;
-	}
-
-	// 第三种代码:
-	public static String getIp2(HttpServletRequest request) {
-		String ip = request.getHeader("X-Forwarded-For");
-		if(StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
-			//多次反向代理后会有多个ip值，第一个ip才是真实ip
-			int index = ip.indexOf(",");
-			if(index != -1){
-				return ip.substring(0,index);
-			}else{
-				return ip;
-			}
-		}
-		ip = request.getHeader("X-Real-IP");
-		if(StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
-			return ip;
-		}
-		return request.getRemoteAddr();
-	}
-	// 第三种是最合适的，最清晰理解的
-
-	/**
-	 * getIpAddr：获取用户真实IP
-	 *
-	 * @param request
-	 * @return
-	 */
-	public static String getIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("X-Real-IP");
-		if (null != ip && !"".equals(ip.trim())
-				&& !"unknown".equalsIgnoreCase(ip)) {
-			return ip;
-		}
-		ip = request.getHeader("X-Forwarded-For");
-		if (null != ip && !"".equals(ip.trim())
-				&& !"unknown".equalsIgnoreCase(ip)) {
-			// 多次反向代理后会有多个IP值，第一个为真实IP。
-			int index = ip.indexOf(',');
-			if (index != -1) {
-				return ip.substring(0, index);
-			} else {
-				return ip;
-			}
-		}
-		return request.getRemoteAddr();
-	}
+//	public static String getLocalIp(HttpServletRequest request) {
+	//		String remoteAddr = request.getRemoteAddr();
+	//		String forwarded = request.getHeader("X-Forwarded-For");
+	//		String realIp = request.getHeader("X-Real-IP");
+	//
+	//		String ip = null;
+	//		if (realIp == null) {
+	//			if (forwarded == null) {
+	//				ip = remoteAddr;
+	//			} else {
+	//				ip = remoteAddr + "/" + forwarded.split(",")[0];
+	//			}
+	//		} else {
+	//			if (realIp.equals(forwarded)) {
+	//				ip = realIp;
+	//			} else {
+	//				if(forwarded != null){
+	//					forwarded = forwarded.split(",")[0];
+	//				}
+	//				ip = realIp + "/" + forwarded;
+	//			}
+	//		}
+	//		return ip;
+	//	}
+	//
+	//	// 第二种代码:
+	//	public static String getIp(HttpServletRequest request) {
+	//		String remoteAddr = request.getRemoteAddr();
+	//		String forwarded = request.getHeader("X-Forwarded-For");
+	//		String realIp = request.getHeader("X-Real-IP");
+	//
+	//		String ip = null;
+	//		if (realIp == null) {
+	//			if (forwarded == null) {
+	//				ip = remoteAddr;
+	//			} else {
+	//				ip = remoteAddr + "/" + forwarded;
+	//			}
+	//		} else {
+	//			if (realIp.equals(forwarded)) {
+	//				ip = realIp;
+	//			} else {
+	//				ip = realIp + "/" + forwarded.replaceAll(", " + realIp, "");
+	//			}
+	//		}
+	//		return ip;
+	//	}
+	//
+	//	// 第三种代码:
+	//	public static String getIp2(HttpServletRequest request) {
+	//		String ip = request.getHeader("X-Forwarded-For");
+	//		if(StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
+	//			//多次反向代理后会有多个ip值，第一个ip才是真实ip
+	//			int index = ip.indexOf(",");
+	//			if(index != -1){
+	//				return ip.substring(0,index);
+	//			}else{
+	//				return ip;
+	//			}
+	//		}
+	//		ip = request.getHeader("X-Real-IP");
+	//		if(StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)){
+	//			return ip;
+	//		}
+	//		return request.getRemoteAddr();
+	//	}
+	//	// 第三种是最合适的，最清晰理解的
+	//
+	//	/**
+	//	 * getIpAddr：获取用户真实IP
+	//	 *
+	//	 * @param request
+	//	 * @return
+	//	 */
+	//	public static String getIpAddr(HttpServletRequest request) {
+	//		String ip = request.getHeader("X-Real-IP");
+	//		if (null != ip && !"".equals(ip.trim())
+	//				&& !"unknown".equalsIgnoreCase(ip)) {
+	//			return ip;
+	//		}
+	//		ip = request.getHeader("X-Forwarded-For");
+	//		if (null != ip && !"".equals(ip.trim())
+	//				&& !"unknown".equalsIgnoreCase(ip)) {
+	//			// 多次反向代理后会有多个IP值，第一个为真实IP。
+	//			int index = ip.indexOf(',');
+	//			if (index != -1) {
+	//				return ip.substring(0, index);
+	//			} else {
+	//				return ip;
+	//			}
+	//		}
+	//		return request.getRemoteAddr();
+	//	}
 
 }
