@@ -1,24 +1,36 @@
 package bitBeat.QCC;
 
+import org.w3c.dom.Document;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 /**
  * Created by sure GM on 2016/8/8 0:00.
  */
 public class XML {
 //	Java通过DOM解析XML
-	//1>得到DOM解析器的工厂实例
-	//　　DocumentBuilderFactory domfac=DocumentBuilderFactory.newInstance();
-	//　　得到javax.xml.parsers.DocumentBuilderFactory;类的实例就是我们要的解析器工厂
-	//　　
-	//		2>从DOM工厂获得DOM解析器
-	//　　DocumentBuilder dombuilder=domfac.newDocumentBuilder();
-	//　　通过javax.xml.parsers.DocumentBuilderFactory实例的静态方法newDocumentBuilder()得到DOM解析器
-	//　　
-	//		3>把要解析的XML文档转化为输入流，以便DOM解析器解析它
-	//　　InputStream is=new FileInputStream("bin/library.xml");
-	//　　InputStream是一个接口。
-	//			4>解析XML文档的输入流，得到一个Document
-	//　　Document doc=dombuilder.parse(is);
-	//　　由XML文档的输入流得到一个org.w3c.dom.Document对象，以后的处理都是对Document对象进行的
+	public static void parseXML() throws Exception {
+		//1>得到DOM解析器的工厂实例
+	　　DocumentBuilderFactory domfac=DocumentBuilderFactory.newInstance();
+//	　　得到javax.xml.parsers.DocumentBuilderFactory;类的实例就是我们要的解析器工厂
+	　　
+//		2>从DOM工厂获得DOM解析器
+	　　DocumentBuilder dombuilder=domfac.newDocumentBuilder();
+//	　　通过javax.xml.parsers.DocumentBuilderFactory实例的静态方法newDocumentBuilder()得到DOM解析器
+	　　
+//		3>把要解析的XML文档转化为输入流，以便DOM解析器解析它
+	　　InputStream is=new FileInputStream("bin/library.xml");
+//	　　InputStream是一个接口。
+
+//		4>解析XML文档的输入流，得到一个Document
+	　　Document doc=dombuilder.parse(is);
+//	　　由XML文档的输入流得到一个org.w3c.dom.Document对象，以后的处理都是对Document对象进行的
+	}
+
 	//　　
 	//		5>得到XML文档的根节点
 	//　　Element root=doc.getDocumentElement();
