@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="poi-3.16-beta2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/poi-3.16-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/poi-examples-3.16-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/poi-excelant-3.16-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/poi-ooxml-3.16-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/poi-scratchpad-3.16-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/poi-ooxml-schemas-3.16-beta2.jar!/" />
+      <root url="file://$PROJECT_DIR$" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/ooxml-lib/xmlbeans-2.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/ooxml-lib/curvesapi-1.04.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src" />
+    </SOURCES>
+  </library>
+</component>

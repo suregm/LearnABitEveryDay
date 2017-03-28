@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="dom4j-1.6.1.redhat-7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1.redhat-7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/sitemesh-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/xml-apis-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/xml-apis-xerces-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/jaxen-1.1-beta-7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/jaxme-api-0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/jsr173_1.0_api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/msv-20030807.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/pull-parser-2.1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/relaxngDatatype-20030807.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/xpp3-1.1.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/dom4j-1.6.1/lib/xsdlib-20030807.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/jdom-2.0.6/jdom-2.0.6-contrib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/jdom-2.0.6/jdom-2.0.6-junit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/jdom-2.0.6/jdom-2.0.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/jdom-2.0.6/jdom-2.0.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../Libraries/xml/jdom-2.0.6/jdom-2.0.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

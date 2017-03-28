@@ -4,11 +4,19 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * Created by sure GM on 2016/8/8 0:00.
@@ -94,7 +102,7 @@ public class XML {
 	// 此为下面即将解析度简单xml结构，并将其封装成一个User对象。
 
 //	Java代码
-	public static void parseXMLBySax {
+	public static void parseXMLBySax() {
 		try {
 			//1.获取factory
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -114,9 +122,155 @@ public class XML {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+}
+
+
+/**
+ * 定义xml解析时的监听类
+ *
+ * 实现方式有很多，可以实现接口：ContentHandler，DTDHandler， EntityResolver 和 ErrorHandler
+ * 但我们常用的继承：DefaultHandler
+ */
+class SaxUtil extends DefaultHandler {
+
+	private User user;
+	private HeadPic headPic;
+	private String content;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+	@Override
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
+		content = new String(ch, start, length);
+	}
+
+	//当解析到文本开始时触发
+	@Override
+	public void startDocument() throws SAXException {
+		super.startDocument();
+	}
+
+	//当解析到文本结束时触发
+	@Override
+	public void endDocument() throws SAXException {
+		super.endDocument();
+	}
+
+	//当解析到元素开始时触发
+	@Override
+	public void startElement(String uri, String localName, String name,
+	                         Attributes attributes) throws SAXException {
+		if ("user".equals(name)) {
+			user = new User();
+		}
+		if ("headpic".equals(name)) {
+			headPic = new HeadPic();
+		}
+	}
+
+	//当解析到元素结束时触发
+	@Override
+	public void endElement(String uri, String localName, String name)
+			throws SAXException {
+		if ("username".equals(name)) {
+			user.setUserName(content);
+		}
+		if ("password".equals(name)) {
+			user.setPassword(content);
+		}
+		if ("sex".equals(name)) {
+			user.setSex(content);
+		}
+		if ("birthday".equals(name)) {
+			try {
+				user.setBirthday(sdf.parse(content));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if ("pictitle".equals(name)) {
+			headPic.setPicTitle(content);
+		}
+		if ("picurl".equals(name)) {
+			headPic.setPicUrl(content);
+			user.setHeadPic(headPic);
+		}
 
 	}
 
+	public User getUser() {
+		return user;
+	}
+}
 
+class User {
+	private String userName;
+	private Date birthday;
+	private String password;
+	private String sex;
+	private HeadPic headPic;
 
+	public HeadPic getHeadPic() {
+		return this.headPic;
+	}
+
+	public void setHeadPic(HeadPic headPic) {
+		this.headPic = headPic;
+	}
+
+	public Date getBirthday() {
+		return this.birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setUserName(String name) {
+		this.userName = name;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getSex() {
+		return this.sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+}
+
+class HeadPic {
+	private String picTitle;
+	private String picUrl;
+
+	public String getPicTitle() {
+		return this.picTitle;
+	}
+
+	public void setPicTitle(String picTitle) {
+		this.picTitle = picTitle;
+	}
+
+	public String getPicUrl() {
+		return this.picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
 }
