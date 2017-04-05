@@ -42,6 +42,7 @@ public class ReadRdp {
                     colCount = str.replaceAll("\\t+", " ").replaceAll("\\s+", " ").trim().split(" ").length;
                 }
             }
+            in.close();
         } catch(Exception e){
             e.printStackTrace();
         }
