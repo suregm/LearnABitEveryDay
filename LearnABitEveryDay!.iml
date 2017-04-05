@@ -7,12 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="sqljdbc42" level="application" />
-    <orderEntry type="library" name="jsoup-1.10.2-javadoc" level="application" />
-    <orderEntry type="library" name="poi-3.16-beta2" level="application" />
-    <orderEntry type="library" name="dom4j-1.6.1.redhat-7" level="application" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.41-bin" level="project" />
-    <orderEntry type="library" name="poi-3.16-beta2" level="project" />
-    <orderEntry type="library" name="dom4j-1.6.1.redhat-7" level="project" />
+    <orderEntry type="library" name="jdbc" level="project" />
+    <orderEntry type="library" name="jsoup" level="project" />
+    <orderEntry type="library" name="poi" level="project" />
+    <orderEntry type="library" name="xml" level="project" />
   </component>
 </module>

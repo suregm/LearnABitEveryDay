@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="poi">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Libraries/poi" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Libraries/poi/lib/log4j-1.2.17.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../Libraries/poi/docs/apidocs" />
+    </JAVADOC>
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../Libraries/poi" recursive="false" />
+  </library>
+</component>

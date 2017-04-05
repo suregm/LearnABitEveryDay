@@ -1,12 +1,40 @@
-package bitBeat;
+package bitBeat.Matrix;
 
 import java.util.Scanner;
 
 /**
  * Created by sure GM on 2015/10/11.
  */
-public class Matrix
+public class MatrixX
 {
+    private int mRow;
+    private int mCol;
+
+    public MatrixX(int rowCount, int colCount) {
+        this.mRow = rowCount;
+        this.mCol = colCount;
+    }
+
+    public void createMatrix(String ele) {
+        int[][] matrix = new int[mRow][mCol];
+        int count = 0;
+        String[] eleArr = ele.replaceAll("\\t+", " ").replaceAll("\\s+", " ").trim().split(" ");
+        for (int i = 0; i < mRow; i++) {
+            for (int j = 0; j < mCol; j++) {
+                if(count < eleArr.length && count % mCol != 0) {
+                    matrix[i][j] = Integer.parseInt(eleArr[count]);
+                    System.out.print(matrix[i][j]);
+                    if((count + 1) % mCol == 0) {
+                        System.out.println();
+                    } else {
+                        System.out.print("\t");
+                    }
+                }
+                count++;
+            }
+        }
+    }
+
     public static void main(String[] args)
     {
         int i;
