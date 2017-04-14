@@ -1,4 +1,9 @@
 @echo off
+
+echo %0
+echo.
+echo.
+
 echo start to rename files's name...
 
 ::变量赋值非数值时等号两边不能含有空格
@@ -18,6 +23,7 @@ echo.
 echo.
 echo rename complete, totally %sum% files renamed.
 
+::若批处理中需要用到多个环境变量，建议使用“setlocal”和“endlocal”命令，这样自动清除自定义的环境变量
 set sum =
 set extension =
 

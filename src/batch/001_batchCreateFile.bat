@@ -1,4 +1,9 @@
 @echo off
+
+echo %0
+echo.
+echo.
+
 echo create files by BATCH.
 
 echo.
