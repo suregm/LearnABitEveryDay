@@ -5,7 +5,7 @@ echo.
 echo.
 
 :repeate
-:: 清楚命令行窗口屏幕中显示的信息，以便批处理显示自己的操作菜单
+:: 清除命令行窗口屏幕中显示的信息，以便批处理显示自己的操作菜单
 cls
 echo.
 echo.
@@ -37,7 +37,7 @@ if "%num%"=="2" (
     echo.
     echo.
     echo 当前的时间为：
-    :: /T无需用户输入新的时间
+    :: /T 无需用户输入新的时间
     time /T
     pause
     goto repeate
