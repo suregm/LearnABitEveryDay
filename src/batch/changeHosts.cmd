@@ -4,6 +4,7 @@ echo %0
 echo.
 echo.
 
+:: 设置窗口长宽
 mode con lines=30 cols=60
 %1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit
 cd /d "%~dp0"
@@ -22,12 +23,9 @@ echo. 1.使用自由hosts（即在下面输入1）
 echo.
 echo. 2.恢复初始hosts（即在下面输入2）
 echo.-----------------------------------------------------------
-
 if exist "%SystemRoot%\System32\choice.exe" goto Win7Choice
-
 :: 获取用户输入
 set /p choice=请输入数字并按回车键确认:
-
 echo.
 if %choice%==1 goto hostDNS
 if %choice%==2 goto orig
@@ -48,6 +46,7 @@ goto main
 cls
 color 2f
 copy /y "hosts" "%SystemRoot%\System32\drivers\etc\hosts"
+:: 刷新DNS
 ipconfig /flushdns
 echo.-----------------------------------------------------------
 echo.
