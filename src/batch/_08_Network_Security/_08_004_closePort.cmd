@@ -20,7 +20,11 @@ echo.
 
 
 echo 正在关闭Windows中的Internet服务...
-:: >err 表示将命令正常执行时的输出欣喜转到名为err的文件中，避免显示在命令行窗口中，最后予以删除
+:: issreset ISS是Windows平台下的应用程序服务器，它提供了多种主要的Internet应用服务
+:: issreset /start >nul  启动Internet服务
+:: issreset /stop >nul  停止Internet服务
+:: issreset /restart >nul  重启Internet服务
+:: >err 表示将命令正常执行时的输出信息转到名为err的文件中，避免显示在命令行窗口中，最后予以删除
 iisreset /stop 2>&0 >err
 echo http端口80，ftp端口21及STMP端口25已经成功关闭！
 echo 正在关闭telnet服务...
