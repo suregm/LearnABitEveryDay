@@ -4,6 +4,9 @@ echo %0
 echo.
 echo.
 
+cls
+echo.
+echo.
 echo ---------请选择要执行的操作---------
 echo ----1.输入数字1并回车，创建普通的FTP站点
 echo ----2.输入数字2并回车，创建具有指定IP地址和端口的FTP站点
@@ -21,7 +24,7 @@ if "%num%"=="1" (
     set /p siteName=请输入站点的名称：
     echo.
 
-    :: iisftp /create
+    :: iisftp /create %sourcePath% %siteName%
     :: iisftp /query
     :: iisftp /start %siteName%
     :: iisftp /pause %siteName%
@@ -60,7 +63,7 @@ if "%num%"=="4" (
     iisftpdr /create %siteName% %vdName% %sourceVD%
     goto exit
 )
-if "%num%"=="2" (
+if "%num%"=="5" (
     cls
     iisftp /query
     set /p siteName=请输入要删除虚拟目录的FTP站点：
