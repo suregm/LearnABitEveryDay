@@ -171,4 +171,71 @@ public class FtpUtil2 {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    问题描述：
+    使用org.apache.commons.net.ftp.FTPClient创建中文目录、上传中文文件名时，目录名及文件名中的中文显示为“??”。
+    原因：
+    FTP协议里面，规定文件名编码为iso-8859-1，所以目录名或文件名需要转码。
+    解决方案：
+            1.将中文的目录或文件名转为iso-8859-1编码的字符。参考代码：
+    复制代码 代码如下:
+
+    String name="目录名或文件名";
+    name=new String(name.getBytes("GBK"),"iso-8859-1");// 转换后的目录名或文件名。
+
+2.设置linux环境变量
+    复制代码 代码如下:
+
+    export LC_ALL="zh_CN.GBK"
+    export LANG="zh_CN.GBK"
+
+    实例：
+    复制代码 代码如下:
+
+    public boolean upLoadFile(File file, String path, String fileName) throws IOException {
+        boolean result = false;
+        FTPClient ftpClient = new FTPClient();
+        try {
+            ftpClient.connect(confService.getConfValue(PortalConfContants.FTP_CLIENT_HOST));
+            ftpClient.login(confService.getConfValue(PortalConfContants.FTP_CLIENT_USERNAME), confService
+                    .getConfValue(PortalConfContants.FTP_CLIENT_PASSWORD));
+            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
+            // make directory
+            if (path != null && !"".equals(path.trim())) {
+                String[] pathes = path.split("/");
+                for (String onepath : pathes) {
+                    if (onepath == null || "".equals(onepath.trim())) {
+                        continue;
+                    }
+                    onepath=new String(onepath.getBytes("GBK"),"iso-8859-1");
+                    if (!ftpClient.changeWorkingDirectory(onepath)) {
+                        ftpClient.makeDirectory(onepath);
+                        ftpClient.changeWorkingDirectory(onepath);
+                    }
+                }
+            }
+            result = ftpClient.storeFile(new String(fileName.getBytes("GBK"),"iso-8859-1"), new FileInputStream(file));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ftpClient.logout();
+        }
+        return result;
+    }
+
+
+
+    java.net.URLEncoder.encode 下就Ok了。
 }
