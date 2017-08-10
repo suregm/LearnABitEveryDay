@@ -237,5 +237,7 @@ public class FtpUtil2 {
 
 
 
+
+
     java.net.URLEncoder.encode 下就Ok了。
 }
