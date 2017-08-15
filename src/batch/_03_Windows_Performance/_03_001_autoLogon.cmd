@@ -12,6 +12,6 @@ echo "Autoadminlogon"="1" >>temp.reg
 echo "Defaultusername"="NormalAccount" >>temp.reg
 echo "Defaultpassword"="NoPrivilege" >>temp.reg
 echo.
-echo 成功将“NormalAccount”账户设置为当前自动登录的帐户！
+echo 成功将“NormalAccount”账户设置为当前自动登录的账户！
 regedit /s temp.reg
 del /q /f temp.reg >nul
