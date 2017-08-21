@@ -1,0 +1,151 @@
+3.7 The PuTTY command line
+
+PuTTY can be made to do various things without user intervention by supplying command-line arguments (e.g., from a command prompt window, or a Windows shortcut).
+
+3.7.1 Starting a session from the command line
+
+These options allow you to bypass the configuration window and launch straight into a session.
+
+To start a connection to a server called host:
+
+putty.exe [-ssh | -telnet | -rlogin | -raw] [user@]host
+If this syntax is used, settings are taken from the Default Settings (see section 4.1.2); user overrides these settings if supplied. Also, you can specify a protocol, which will override the default protocol (see section 3.7.3.2).
+
+For telnet sessions, the following alternative syntax is supported (this makes PuTTY suitable for use as a URL handler for telnet URLs in web browsers):
+
+putty.exe telnet://host[:port]/
+In order to start an existing saved session called sessionname, use the -load option (described in section 3.7.3.1).
+
+putty.exe -load "session name"
+3.7.2 -cleanup
+
+If invoked with the -cleanup option, rather than running as normal, PuTTY will remove its registry entries and random seed file from the local machine (after confirming with the user).
+
+3.7.3 Standard command-line options
+
+PuTTY and its associated tools support a range of command-line options, most of which are consistent across all the tools. This section lists the available options in all tools. Options which are specific to a particular tool are covered in the chapter about that tool.
+
+3.7.3.1 -load: load a saved session
+
+The -load option causes PuTTY to load configuration details out of a saved session. If these details include a host name, then this option is all you need to make PuTTY start a session (although Plink still requires an explicitly specified host name).
+
+You need double quotes around the session name if it contains spaces.
+
+If you want to create a Windows shortcut to start a PuTTY saved session, this is the option you should use: your shortcut should call something like
+
+d:\path\to\putty.exe -load "my session"
+(Note that PuTTY itself supports an alternative form of this option, for backwards compatibility. If you execute putty @sessionname it will have the same effect as putty -load "sessionname". With the @ form, no double quotes are required, and the @ sign must be the very first thing on the command line. This form of the option is deprecated.)
+
+3.7.3.2 Selecting a protocol: -ssh, -telnet, -rlogin, -raw
+
+To choose which protocol you want to connect with, you can use one of these options:
+
+-ssh selects the SSH protocol.
+-telnet selects the Telnet protocol.
+-rlogin selects the Rlogin protocol.
+-raw selects the raw protocol.
+These options are not available in the file transfer tools PSCP and PSFTP (which only work with the SSH protocol).
+
+These options are equivalent to the protocol selection buttons in the Session panel of the PuTTY configuration box (see section 4.1.1).
+
+3.7.3.3 -v: increase verbosity
+
+Most of the PuTTY tools can be made to tell you more about what they are doing by supplying the -v option. If you are having trouble when making a connection, or you're simply curious, you can turn this switch on and hope to find out more about what is happening.
+
+3.7.3.4 -l: specify a login name
+
+You can specify the user name to log in as on the remote server using the -l option. For example, plink login.example.com -l fred.
+
+These options are equivalent to the username selection box in the Connection panel of the PuTTY configuration box (see section 4.13.2).
+
+3.7.3.5 -L, -R and -D: set up port forwardings
+
+As well as setting up port forwardings in the PuTTY configuration (see section 4.19.2), you can also set up forwardings on the command line. The command-line options work just like the ones in Unix ssh programs.
+
+To forward a local port (say 5110) to a remote destination (say popserver.example.com port 110), you can write something like one of these:
+
+putty -L 5110:popserver.example.com:110 -load mysession
+plink mysession -L 5110:popserver.example.com:110
+To forward a remote port to a local destination, just use the -R option instead of -L:
+
+putty -R 5023:mytelnetserver.myhouse.org:23 -load mysession
+plink mysession -R 5023:mytelnetserver.myhouse.org:23
+To specify an IP address for the listening end of the tunnel, prepend it to the argument:
+
+plink -L 127.0.0.5:23:localhost:23 myhost
+To set up SOCKS-based dynamic port forwarding on a local port, use the -D option. For this one you only have to pass the port number:
+
+putty -D 4096 -load mysession
+For general information on port forwarding, see section 3.5.
+
+These options are not available in the file transfer tools PSCP and PSFTP.
+
+3.7.3.6 -m: read a remote command or script from a file
+
+The -m option performs a similar function to the "Remote command" box in the SSH panel of the PuTTY configuration box (see section 4.17.1). However, the -m option expects to be given a local file name, and it will read a command from that file. On most Unix systems, you can even put multiple lines in this file and execute more than one command in sequence, or a whole shell script.
+
+This option is not available in the file transfer tools PSCP and PSFTP.
+
+3.7.3.7 -P: specify a port number
+
+The -P option is used to specify the port number to connect to. If you have a Telnet server running on port 9696 of a machine instead of port 23, for example:
+
+putty -telnet -P 9696 host.name
+plink -telnet -P 9696 host.name
+(Note that this option is more useful in Plink than in PuTTY, because in PuTTY you can write putty -telnet host.name 9696 in any case.)
+
+These options are equivalent to the protocol selection buttons in the Session panel of the PuTTY configuration box (see section 4.1.1).
+
+3.7.3.8 -pw: specify a password
+
+A simple way to automate a remote login is to supply your password on the command line. This is not recommended for reasons of security. If you possibly can, we recommend you set up public-key authentication instead. See chapter 8 for details.
+
+Note that the -pw option only works when you are using the SSH protocol. Due to fundamental limitations of Telnet and Rlogin, these protocols do not support automated password authentication.
+
+3.7.3.9 -A and -a: control agent forwarding
+
+The -A option turns on SSH agent forwarding, and -a turns it off. These options are only meaningful if you are using SSH.
+
+See chapter 9 for general information on Pageant, and section 9.4 for information on agent forwarding. Note that there is a security risk involved with enabling this option; see section 9.5 for details.
+
+These options are equivalent to the agent forwarding checkbox in the Auth panel of the PuTTY configuration box (see section 4.18.3).
+
+These options are not available in the file transfer tools PSCP and PSFTP.
+
+3.7.3.10 -X and -x: control X11 forwarding
+
+The -X option turns on X11 forwarding in SSH, and -x turns it off. These options are only meaningful if you are using SSH.
+
+For information on X11 forwarding, see section 3.4.
+
+These options are equivalent to the X11 forwarding checkbox in the Tunnels panel of the PuTTY configuration box (see section 4.19.1).
+
+These options are not available in the file transfer tools PSCP and PSFTP.
+
+3.7.3.11 -t and -T: control pseudo-terminal allocation
+
+The -t option ensures PuTTY attempts to allocate a pseudo-terminal at the server, and -T stops it from allocating one. These options are only meaningful if you are using SSH.
+
+These options are equivalent to the "Don't allocate a pseudo-terminal" checkbox in the SSH panel of the PuTTY configuration box (see section 4.17.2).
+
+These options are not available in the file transfer tools PSCP and PSFTP.
+
+3.7.3.12 -C: enable compression
+
+The -C option enables compression of the data sent across the network. This option is only meaningful if you are using SSH.
+
+This option is equivalent to the "Enable compression" checkbox in the SSH panel of the PuTTY configuration box (see section 4.17.3).
+
+3.7.3.13 -1 and -2: specify an SSH protocol version
+
+The -1 and -2 options force PuTTY to use version 1 or version 2 of the SSH protocol. These options are only meaningful if you are using SSH.
+
+These options are equivalent to selecting your preferred SSH protocol version as "1 only" or "2 only" in the SSH panel of the PuTTY configuration box (see section 4.17.4).
+
+3.7.3.14 -i: specify an SSH private key
+
+The -i option allows you to specify the name of a private key file in *.PPK format which PuTTY will use to authenticate with the server. This option is only meaningful if you are using SSH.
+
+For general information on public-key authentication, see chapter 8.
+
+This option is equivalent to the "Private key file for authentication" box in the Auth panel of the PuTTY configuration box (see section 4.18.5).
