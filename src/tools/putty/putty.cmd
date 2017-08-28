@@ -4,7 +4,7 @@ echo %0
 echo.
 echo.
 
-start %dp~0 -L 5801@Localhost pw password sa@
+start %dp~0 -L putty username@remote_mysqlhost -L 5801:localhost:4100 -pw Changeme_123
 
 
 :: putty.exe [-ssh | -telnet | -rlogin | -raw] [user@]host
