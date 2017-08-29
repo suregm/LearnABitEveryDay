@@ -4,7 +4,14 @@ echo %0
 echo.
 echo.
 
-start %dp~0 -L putty username@remote_mysqlhost -L 5801:localhost:4100 -pw Changeme_123
+set /p portForwarded=请输入转发端口
+set /p remote_mysqlhost=请输入数据库ip
+set /p portDB=请输入数据库端口号
+set /p userName=请输入数据库登录账户
+set /p password=请输入数据库登录密码
+
+
+start %~dp0putty.exe -L %portForwarded%:localhost:%portDB% -pw %password% %userName%@%remote_mysqlhost%
 
 
 :: putty.exe [-ssh | -telnet | -rlogin | -raw] [user@]host
