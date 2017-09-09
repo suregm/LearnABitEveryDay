@@ -4,11 +4,11 @@ echo %0
 echo.
 echo.
 
-set /p portForwarded=请输入转发端口
-set /p remote_mysqlhost=请输入数据库ip
-set /p portDB=请输入数据库端口号
-set /p userName=请输入数据库登录账户
-set /p password=请输入数据库登录密码
+set /p portForwarded=Please input forwarded port:
+set /p remote_mysqlhost=Please input Database IP:
+set /p portDB=Please input Database port:
+set /p userName=Please input Database user:
+set /p password=Please input Database password:
 
 
 start %~dp0putty.exe -L %portForwarded%:localhost:%portDB% -pw %password% %userName%@%remote_mysqlhost%
