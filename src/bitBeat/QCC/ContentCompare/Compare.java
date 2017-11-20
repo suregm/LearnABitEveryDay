@@ -1,4 +1,4 @@
-package bitBeat.QCC;
+package bitBeat.QCC.ContentCompare;
 
 import java.util.ArrayList;
 import java.util.List;

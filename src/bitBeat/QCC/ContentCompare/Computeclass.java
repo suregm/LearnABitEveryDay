@@ -1,4 +1,7 @@
-package bitBeat.QCC;
+package bitBeat.QCC.ContentCompare;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * http://blog.csdn.net/caiandyong/article/details/44245647
