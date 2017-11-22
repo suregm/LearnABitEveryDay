@@ -57,6 +57,7 @@ echo.
 10.使用批处理脚本检测是否中木马病毒（通过检测端口的方式，例如端口7626）。脚本内容如下：
    @echo off
    netstat -a -n > a.txt
+   :: type命令列出a.txt中的内容
    type a.txt | find "7626" && echo "Congratulations! You have infected GLACIER!"
    del a.txt
    pause & exit
@@ -68,3 +69,10 @@ echo.
     copy ipc2.BAT \\%1\admin$\system32 /y
     copy NWZI.EXE \\%1\admin$\system32 /y
     attrib \\%1\admin$\system32\10.bat -r -h -s
+
+12.more命令
+    more a.txt和type a.txt。利用more命令，可以达到逐屏或逐行显示输出的效果，而type命令只能一次把输出显示完，最后的结果就是只能看到末尾的部分。在例十三里，more命令的作用就是让输出的信息逐屏或逐行显示。
+    看到这里，你是否已经能隐约感受到了|命令的作用了？没错，它的作用，就是把前一命令的输出当后一命令的输入来用的。
+
+13.>、>>
+   输出重定向命令，说的通俗一点，就是把前面命令的输出写入到一个文件中。这两个命令的唯一区别是，>会清除掉原有文件中的内容后把新的内容写入原文件，而>>只会另起一行追加新的内容到原文件中，而不会改动其中的原有内容。
