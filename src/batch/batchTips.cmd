@@ -124,7 +124,11 @@ echo.
     @echo off
     dir a.ttt /a && dir a.txt || exit
 
-
+19.for
+    在批处理程序中使用 for 命令，请使用以下语法：
+    for %%variable in (set) do command [command-parameters]
+    要在命令提示符下使用 for，请使用以下语法：
+    for %variable in (set) do command [command-parameters]
 
 
 
