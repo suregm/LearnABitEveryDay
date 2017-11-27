@@ -107,3 +107,24 @@ echo.
     <&，刚好和>&相反，从一个句柄读取输入并将其写入到另一个句柄输出中。
 
 18.组合命令：&、&&、||
+    &
+    作用是用来连接n个DOS命令，并把这些命令按从前往后顺序执行，而不管是否有命令执行失败。
+    copy a.txt b.txt /y & del a.txt，这句和move a.txt b.txt的效果是一样的，只不过前者是分了两步来进行的
+    &&
+    从前往后依次执行被它连接的几个命令时会自动判断是否有某个命令执行出错，一旦发现出错后将不继续执行后面剩下的命令。
+    dir 文件://1%/www/user.mdb && copy 文件://1%/www/user.mdb e:\backup\www
+    如果远程主机存在user.mdb，则copy到本地e:\backup\www，如果不存在当然就不执行copy了。它和下面这句的作用是一样的：
+    if exist 文件://1%/www/user.mdb copy 文件://1%/www/user.mdb e:\backup\www
+    ||
+    当遇到一个执行正确的命令就退出此命令组合，不再继续执行下面的命令。
+
+    @echo off
+    dir a.ttt /a & dir a.txt || exit
+
+    @echo off
+    dir a.ttt /a && dir a.txt || exit
+
+
+
+
+
