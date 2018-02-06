@@ -8,7 +8,7 @@ rem 使用FTP 到某台机器上进行文件上传、下载的操作，在命令
 rem 1. ftp 主机名
 rem 2. 输入用户名
 rem 3. 输入密码
-rem 4. 切换模式(asc 或者是 bin)
+rem 4. 切换模式(asc 或者是 bin)。binary：设置文件传输模式为binary，缺省为ascii。binary模式不会对数据进行任何处理，ascii模式会将回车换行
 rem 5. 上传(put)或下载(get)
 rem 6. 退出(bye or quit)
 
@@ -85,7 +85,7 @@ ftp命令详解
      语法：glob
 14 hash
      Toggle printing `#‘ for each buffer transferred.
-     切换已传输的每个数据块的数字签名 (#) 打印。
+     切换已传输的每个数据块的数字签名 (#) 打印。每传输1024个字节，显示一个hash符号（#）
      语法：hash
 15 help
      Print local help information.
@@ -130,10 +130,11 @@ ftp命令详解
 25 open
      Connect to remote tftp.
      与指定的 FTP 服务器连接。
-     语法：open Computer [Port]
+     语法：open Computer(IP) [Port]
 26 prompt
      Force interactive prompting on multiple commands.
      在 prompt 的开模式和关模式之间切换。
+     设置多个文件传输时的交互提示（默认为提示，批量下载在每个文件都会提示，输入Y才能进行下一文件的传输，prompt可取消交互提示）
      语法：prompt
 27 put
      Send one file.
@@ -181,7 +182,7 @@ ftp命令详解
      语法：trace
 38 type
      Set file transfer type.
-     设置或显示文件传送类型。
+     设置或显示文件传送类型。缺省为ascii，如：type binary，设置二进制传输方式。
      语法：type [TypeName]
 39 user
      Send new user information
@@ -191,6 +192,34 @@ ftp命令详解
      Toggle verbose mode.
      切换 verbose 模式。
      语法：verbose
+
+?[cmd]：同help。
+
+umask[newmask]：将远程服务器的缺省umask设置为newmask，如：umask 3。
+
+tick：设置传输时的字节计数器。
+
+tenex：将文件传输类型设置为TENEX机的所需的类型。
+
+system：显示远程主机的操作系统类型。
+
+sunique：将远程主机文件名存储设置为唯一(与runique对应)。
+
+struct[struct-name]：将文件传输结构设置为struct-name，缺省时使用stream结构。
+
+size file-name：显示远程主机文件大小，如：site idle 7200。
+
+site arg1，arg2...：将参数作为SITE命令逐字发送至远程ftp主机。
+
+sendport：设置PORT命令的使用。
+
+
+
+
+
+
+
+
 
 
 
