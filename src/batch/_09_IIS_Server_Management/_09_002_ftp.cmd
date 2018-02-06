@@ -213,7 +213,53 @@ site arg1，arg2...：将参数作为SITE命令逐字发送至远程ftp主机。
 
 sendport：设置PORT命令的使用。
 
+runique：设置文件名唯一性存储，若文件存在，则在原文件后加后缀..1，.2等。
 
+reset：清除回答队列。
+
+restart marker：从指定的标志marker处，重新开始get或put，如：restart 130。
+
+rstatus[file-name]：若未指定文件名，则显示远程主机的状态，否则显示文件状态。
+
+reget remote-file[local-file]：类似于get，但若local-file存在，则从上次传输中断处续传。
+
+proxy ftp-cmd：在次要控制连接中，执行一条ftp命令，该命令允许连接两个ftp服务器，以在两个服务器间传输文件。第一条ftp命令必须为open，以首先建立两个服务器间的连接。
+
+passive：进入被动传输方式。
+
+newer file-name：如果远程机中file-name的修改时间比本地硬盘同名文件的时间更近，则重传该文件。
+
+nlist[remote-dir][local-file]：显示远程主机目录的文件清单，并存入本地硬盘的local-file。
+
+nmap[inpattern outpattern]：设置文件名映射机制，使得文件传输时，文件中的某些字符相互转换，如：nmap $1.$2.$3[$1，$2].[$2，$3]，则传输文件a1.a2.a3时，文件名变为a1，a2。该命令特别适用于远程主机为非UNIX机的情况。
+
+ntrans[inchars[outchars]]：设置文件名字符的翻译机制，如ntrans 1R，则文件名LLL将变为RRR。
+
+mode[modename]：将文件传输方式设置为modename，缺省为stream方式。
+
+modtime file-name：显示远程主机文件的最后修改时间。
+
+macdef macro-name：定义一个宏，遇到macdef下的空行时，宏定义结束。
+
+image：设置二进制传输方式(同binary)。
+
+idle[seconds]：将远程服务器的休眠计时器设为[seconds]秒。
+
+form format：将文件传输方式设置为format，缺省为file方式。
+
+debug[debug-value]：设置调试方式，显示发送至远程主机的每条命令，如：deb up 3，若设为0，表示取消debug。
+
+cr：使用asscii方式传输文件时，将回车换行转换为回行。
+
+cdup：进入远程主机目录的父目录。
+
+chmod mode file-name：将远程主机文件file-name的存取方式设置为mode，如：chmod 777 a.out。
+
+case：在使用mget时，将远程主机文件名中的大写转为小写字母。
+
+$ macro-ame[args]：执行宏定义macro-name.
+
+account[password]：提供登录远程系统成功后访问系统资源所需的补充口令。
 
 
 
