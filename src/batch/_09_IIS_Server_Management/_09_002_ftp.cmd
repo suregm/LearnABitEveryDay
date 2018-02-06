@@ -20,7 +20,7 @@ rem 6. 退出(bye or quit)
 :: -d：启用调试、显示在客户端和服务器之间传递的所有ftp命令。
 :: -i：多个文件传送时关闭交互提示。
 :: -n：禁止自动登录到初始连接。
-:: -g：禁用文件名组，它允许在本地文件和路径名中使用通配符字符（*和?）。
+:: -g：禁用文件名组，它允许在本地文件和路径名中使用通配符字符（*和?），全局文件名。
 :: -s:FileName：指定包含ftp命令的文本文件；当ftp启动后，这些命令将自动运行。该参数中不允许有空格。使用该开关而不是重定向（>）。
 :: -a：在捆绑数据连接时使用任何本地接口。
 :: -w:WindowSize：替代默认大小为4096的传送缓冲区。
@@ -32,12 +32,12 @@ ftp命令详解
 
 1 !
      Escape to the shell.
-     从 ftp 子系统临时退出到命令提示符下。
+     从 ftp 子系统临时退出到命令提示符下。在本地机中执行交互shell，exit回到ftp环境，如：!ls*.zip.
      要返回到 ftp 子系统，请在命令提示符下键入 exit。
-     语法：!
+     语法：![cmd[args]]
 2 append
      Append to a file
-     使用当前文件类型设置将本地文件附加到远程计算机上的文件。
+     使用当前文件类型设置将本地文件附加到远程计算机上的文件。若未指定远程系统文件名，则使用本地文件名。
      语法：append LocalFile [RemoteFile]
 3 ascii
      Set ascii transfer type.
@@ -45,9 +45,9 @@ ftp命令详解
      语法：ascii
 4 bell
      Beep when command completed
-     每个文件传输命令执行完后，将会切换到一个可听见的声音。
+     每个文件传输命令执行完后，计算机响铃一次。
      语法：bell
-5 binary
+5 binary | bin
      Set binary transfer type
      设定以二进制方式传送文件。
      语法：binary
@@ -69,7 +69,7 @@ ftp命令详解
      语法：delete Remotefile
 10 dir
      List contents of remote directory
-     显示远程计算机上的目录文件和子目录列表。
+     显示远程计算机上的目录文件和子目录列表。如果有[local-file]参数则将结果存入本地文件local-file。
      语法：dir [remote-directory] [local-file]
 11 disconnect
      Terminate ftp session.
@@ -81,7 +81,7 @@ ftp命令详解
      语法：get [remote-file] [local-file]
 13 glob
      Toggle metacharacter expansion of local file names.
-     切换本地文件名的通配符扩展。
+     切换本地文件名的通配符扩展。设置mdelete，mget，mput的文件名扩展，缺省时不扩展文件名，同命令行的-g参数。
      语法：glob
 14 hash
      Toggle printing `#‘ for each buffer transferred.
@@ -101,7 +101,7 @@ ftp命令详解
      语法：literal Argument [ ...]
 18 ls
      List contents of remote directory.
-     在远程目录上显示文件简短目录和子目录。
+     在远程目录上显示文件简短目录和子目录。如果有[LocalFile]参数则将目录列表存入本地文件LocalFile。
      语法：ls [RemoteDirectory] [LocalFile]
 19 mdelete
      Delete multiple files.
@@ -156,7 +156,7 @@ ftp命令详解
      Receive file.
      使用当前文件传送类型将远程文件复制到本地计算机。
      语法：recv RemoteFile [LocalFile]
-32 remotehelp
+32 remotehelp | rhelp
      Get help from remote server.
      显示远程命令的帮助。
      语法：remotehelp [Command]
