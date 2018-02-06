@@ -73,5 +73,5 @@ echo.
 
 
 
-
+rem 命令示例：
 c:\putty\psftp.exe feedusr1@fis-depot.ucdavis.edu -i putty_id_rsa_1024.ppk -b c:\putty\myscript.scr -bc -be -v
