@@ -3,14 +3,13 @@ package bitBeat.NM.com.suregm.exam;
 public class CollectionModel {
 
     private final int COUNT = 5000;
-    Object[] c = new Object[COUNT];
-    private int sum = 0;
+    NmObject[] c = new NmObject[COUNT];
+    private static int sum = 0;
 
-    public CollectionModel() {
-        this.c = c;
+    private CollectionModel() {
     }
 
-    private boolean exist(Object obj) {
+    private boolean exist(NmObject obj) {
         for(int i = 0; i < sum; i++) {
             if(c[i] == obj) {
                 return true;
@@ -19,7 +18,7 @@ public class CollectionModel {
         return false;
     }
 
-    private int getIndex(Object obj) {
+    private int getIndex(NmObject obj) {
         for(int i = 0; i < sum; i++) {
             if(c[i] == obj) {
                 return i;
@@ -28,7 +27,7 @@ public class CollectionModel {
         return -1;
     }
 
-    public void add(Object obj) {
+    public void add(NmObject obj) {
         if(exist(obj)) {
             System.out.println("添加的" + obj + "重复了，请重新添加！");
         } else {
@@ -42,7 +41,7 @@ public class CollectionModel {
         }
     }
 
-    public void delete(Object obj) {
+    public void delete(NmObject obj) {
         if(exist(obj)) {
             int index = getIndex(obj);
             for(int i = index; i < sum; i++) {
@@ -59,6 +58,8 @@ public class CollectionModel {
         }
         System.out.println("所有对象为：" + sb.toString().substring(0, sb.toString().length() - 2));
     }
+
+
 
     public static void main(String[] args) {
         CollectionModel c = new CollectionModel();

@@ -10,15 +10,22 @@ class NmObject {
         this.objId = objId;
     }
 
+
     private String objId;
 
     NmObject() {
-        this.objId = getObjId();
+
     }
 
     NmObject(String objId) {
         this.objId = getObjId();
+
+
+
     }
 
+    public String toString() {
+        return objId;
+    }
 
 }
