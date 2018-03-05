@@ -20,7 +20,7 @@ class NmObject {
     NmObject(String objId) {
         this.objId = getObjId();
 
-
+        // good night
 
     }
 
