@@ -66,4 +66,8 @@ public class CollectionModel {
         c.add(new Ne("NE233"));
         c.printAll();
     }
+
+    public void cong(String... wishes) {
+
+    }
 }
