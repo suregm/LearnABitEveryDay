@@ -3,7 +3,7 @@ package learn.TestThread;
 /**
  * Created by sure GM on 2016/5/21 18:19.
  */
-public class TestSny {
+public class TestSyn {
 	public static void main(String[] args) {
 		Tickets tk1 = new Tickets();
 		/*Tickets tk2 = new Tickets();
